@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.WebAPI", "MODEXn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.WebBusinessLayer", "MODEXngine.WebBusinessLayer\MODEXngine.WebBusinessLayer.csproj", "{ED3DA801-7439-498C-A097-57FE10F048E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.DataLayer", "MODEXngine.DataLayer\MODEXngine.DataLayer.csproj", "{ABB78629-733E-4440-B9E9-4DB7112089C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{ED3DA801-7439-498C-A097-57FE10F048E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED3DA801-7439-498C-A097-57FE10F048E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED3DA801-7439-498C-A097-57FE10F048E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB78629-733E-4440-B9E9-4DB7112089C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB78629-733E-4440-B9E9-4DB7112089C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB78629-733E-4440-B9E9-4DB7112089C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB78629-733E-4440-B9E9-4DB7112089C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

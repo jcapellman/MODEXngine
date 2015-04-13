@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MODEXngine.DataLayer\MODEXngine.DataLayer.csproj">
+      <Project>{abb78629-733e-4440-b9e9-4db7112089c8}</Project>
+      <Name>MODEXngine.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MODEXngine.PCL\MODEXngine.PCL.csproj">
       <Project>{8f8721bd-a036-4bc7-9211-4d5963dcd475}</Project>
       <Name>MODEXngine.PCL</Name>

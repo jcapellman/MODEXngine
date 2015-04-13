@@ -41,6 +41,7 @@
     <Compile Include="Common\MODEXception.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transports\BaseTransport.cs" />
+    <Compile Include="Transports\External\Projects\ProjectProfileResponseItem.cs" />
     <Compile Include="Transports\Internal\AuthUserToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
