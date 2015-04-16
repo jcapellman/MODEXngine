@@ -1,7 +1,7 @@
 ﻿<Application
-    x:Class="MODEXngine.Admin.UniversalWindows.App"
+    x:Class="MODEXngine.Admin.UAP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MODEXngine.Admin.UniversalWindows">
+    xmlns:local="using:MODEXngine.Admin.UAP">
 
 </Application>
