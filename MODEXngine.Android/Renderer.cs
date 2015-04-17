@@ -35,6 +35,17 @@ namespace MODEXngine.Android {
             
         }
 
+        public void EnableOption(IRenderer.RENDEROPTIONS option) {
+            switch (option) {
+                case IRenderer.RENDEROPTIONS.BLENDING:
+                    GL.Enable(All.Blend);
+                    break;
+                case IRenderer.RENDEROPTIONS.TEXTURING:
+                    GL.Enable(All.Texture2D);
+                    break;
+            }
+        }
+
         public void RenderFrame() {
             GL.MatrixMode(All.Projection);
             GL.LoadIdentity();

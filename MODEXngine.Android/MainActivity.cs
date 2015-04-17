@@ -17,13 +17,13 @@ namespace MODEXngine.Android {
 #endif
 )]
     public class MainActivity : Activity {
-        GLView1 view;
+        GLMainView view;
 
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
             // Create our OpenGL view, and display it
-            view = new GLView1(this);
+            view = new GLMainView(this);
             SetContentView(view);
         }
 

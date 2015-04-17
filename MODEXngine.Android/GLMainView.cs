@@ -5,10 +5,10 @@ using OpenTK.Platform.Android;
 using Android.Content;
 
 namespace MODEXngine.Android {
-    class GLView1 : AndroidGameView {
+    class GLMainView : AndroidGameView {
         private Renderer _renderer;
 
-        public GLView1(Context context) : base(context) { }
+        public GLMainView(Context context) : base(context) { }
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
