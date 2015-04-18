@@ -37,7 +37,10 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseAudioRenderer.cs" />
     <Compile Include="BaseGraphicsRenderer.cs" />
+    <Compile Include="BaseRenderer.cs" />
+    <Compile Include="Enums\RendererTypes.cs" />
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Base\Geometry.cs" />
     <Compile Include="Objects\Map.cs" />

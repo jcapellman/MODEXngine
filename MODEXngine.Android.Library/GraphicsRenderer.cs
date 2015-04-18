@@ -3,7 +3,7 @@ using OpenTK.Graphics.ES11;
 using MODEXngine.Renderer.PCL;
 
 namespace MODEXngine.Android.Library {
-    public class AndroidGraphicsRenderer : BaseGraphicsRenderer {
+    public class GraphicsRenderer : BaseGraphicsRenderer {
         float[] square_vertices = {
 			-0.5f, -0.5f,
 			0.5f, -0.5f,

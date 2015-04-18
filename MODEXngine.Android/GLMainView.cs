@@ -9,7 +9,7 @@ using MODEXngine.Android.Library;
 
 namespace MODEXngine.Android {
     class GLMainView : AndroidGameView {
-        private AndroidGraphicsRenderer _androidGraphicsRenderer;
+        private GraphicsRenderer _graphicsRenderer;
 
         public GLMainView(Context context) : base(context) { }
 
@@ -19,9 +19,9 @@ namespace MODEXngine.Android {
         }
 
         protected override void CreateFrameBuffer() {
-            _androidGraphicsRenderer = new AndroidGraphicsRenderer();
+            _graphicsRenderer = new GraphicsRenderer();
 
-            _androidGraphicsRenderer.Init();
+            _graphicsRenderer.Init();
 
             base.CreateFrameBuffer();
         }
@@ -29,7 +29,7 @@ namespace MODEXngine.Android {
         protected override void OnRenderFrame(FrameEventArgs e) {
             base.OnRenderFrame(e);
 
-            _androidGraphicsRenderer.RenderFrame();
+            _graphicsRenderer.RenderFrame();
 
             SwapBuffers();
         }
