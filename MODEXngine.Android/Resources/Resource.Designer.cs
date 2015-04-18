@@ -26,6 +26,8 @@ namespace MODEXngine.Android
 		
 		public static void UpdateIdValues()
 		{
+			global::MODEXngine.Android.Library.Resource.String.ApplicationName = global::MODEXngine.Android.Resource.String.ApplicationName;
+			global::MODEXngine.Android.Library.Resource.String.Hello = global::MODEXngine.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

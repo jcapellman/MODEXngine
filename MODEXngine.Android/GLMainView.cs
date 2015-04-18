@@ -2,11 +2,14 @@ using System;
 
 using OpenTK;
 using OpenTK.Platform.Android;
+
 using Android.Content;
+
+using MODEXngine.Android.Library;
 
 namespace MODEXngine.Android {
     class GLMainView : AndroidGameView {
-        private Renderer _renderer;
+        private AndroidGraphicsRenderer _androidGraphicsRenderer;
 
         public GLMainView(Context context) : base(context) { }
 
@@ -16,9 +19,9 @@ namespace MODEXngine.Android {
         }
 
         protected override void CreateFrameBuffer() {
-            _renderer = new Renderer();
+            _androidGraphicsRenderer = new AndroidGraphicsRenderer();
 
-            _renderer.Init();
+            _androidGraphicsRenderer.Init();
 
             base.CreateFrameBuffer();
         }
@@ -26,7 +29,7 @@ namespace MODEXngine.Android {
         protected override void OnRenderFrame(FrameEventArgs e) {
             base.OnRenderFrame(e);
 
-            _renderer.RenderFrame();
+            _androidGraphicsRenderer.RenderFrame();
 
             SwapBuffers();
         }

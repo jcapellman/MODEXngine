@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Android", "MODEXngine.Android\MODEXngine.Android.csproj", "{9DFA3619-B063-41BD-90F8-33550A97FCE0}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Renderer.PCL", "MODEXngine.Renderer.PCL\MODEXngine.Renderer.PCL.csproj", "{844A1E20-5E81-47AD-943D-A8B3716EF293}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Admin.UAP", "MODEXngine.Admin.UAP\MODEXngine.Admin.UAP.csproj", "{23F0DF42-8CF4-4CE3-97A9-4DA71A0CC22A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Android.Library", "MODEXngine.Android.Library\MODEXngine.Android.Library.csproj", "{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +147,16 @@ Global
 		{23F0DF42-8CF4-4CE3-97A9-4DA71A0CC22A}.Release|x86.ActiveCfg = Release|x86
 		{23F0DF42-8CF4-4CE3-97A9-4DA71A0CC22A}.Release|x86.Build.0 = Release|x86
 		{23F0DF42-8CF4-4CE3-97A9-4DA71A0CC22A}.Release|x86.Deploy.0 = Release|x86
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,8 +2,8 @@ using OpenTK.Graphics.ES11;
 
 using MODEXngine.Renderer.PCL;
 
-namespace MODEXngine.Android {
-    public class Renderer : IRenderer {
+namespace MODEXngine.Android.Library {
+    public class AndroidGraphicsRenderer : BaseGraphicsRenderer {
         float[] square_vertices = {
 			-0.5f, -0.5f,
 			0.5f, -0.5f,
@@ -18,22 +18,22 @@ namespace MODEXngine.Android {
 			255,   0,  255, 255,
 		};
 
-        public void Init() {
+        public override void Init() {
             
         }
 
-        public void EnableOption(IRenderer.RENDEROPTIONS option) {
+        public override void EnableOption(RENDEROPTIONS option) {
             switch (option) {
-                case IRenderer.RENDEROPTIONS.BLENDING:
+                case RENDEROPTIONS.BLENDING:
                     GL.Enable(All.Blend);
                     break;
-                case IRenderer.RENDEROPTIONS.TEXTURING:
+                case RENDEROPTIONS.TEXTURING:
                     GL.Enable(All.Texture2D);
                     break;
             }
         }
 
-        public void RenderFrame() {
+        public override void RenderFrame() {
             GL.MatrixMode(All.Projection);
             GL.LoadIdentity();
             GL.Ortho(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
