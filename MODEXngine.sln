@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Admin.UAP", "MOD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Android.Library", "MODEXngine.Android.Library\MODEXngine.Android.Library.csproj", "{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.Windows.Library", "MODEXngine.Windows.Library\MODEXngine.Windows.Library.csproj", "{1D91E250-40DD-474B-946B-BAFA3CDAA742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.DataLayer.PCL", "MODEXngine.DataLayer.PCL\MODEXngine.DataLayer.PCL.csproj", "{EA671189-DFC0-41F2-9601-E3249098957C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +161,26 @@ Global
 		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|ARM.ActiveCfg = Release|Any CPU
 		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|x64.ActiveCfg = Release|Any CPU
 		{A3F786D1-CE92-4BD4-9661-EA4905F3AAC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Release|x64.ActiveCfg = Release|Any CPU
+		{1D91E250-40DD-474B-946B-BAFA3CDAA742}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Release|x64.ActiveCfg = Release|Any CPU
+		{EA671189-DFC0-41F2-9601-E3249098957C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
