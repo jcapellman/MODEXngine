@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+
 using MODEXngine.Library.Engine.Common;
 using MODEXngine.Library.Engine.GameStates;
 using MODEXngine.Library.Engine.Managers;
@@ -23,9 +24,12 @@ namespace MODEXngine.Library.Engine
 
         private readonly Type _initialGameState;
 
+        private string _title;
+
         public MainGame(string gameName, Type initialGameState)
         {
-            Window.Title = gameName;
+            _title = gameName;
+
             _initialGameState = initialGameState;
 
             _graphics = new GraphicsDeviceManager(this);
@@ -51,6 +55,8 @@ namespace MODEXngine.Library.Engine
 
         protected override void Initialize()
         {
+            Window.Title = _title;
+
             _gsContainer = new GameStateContainer
             {
                 Window_Height = Window.ClientBounds.Height,
