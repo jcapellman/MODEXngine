@@ -24,11 +24,11 @@ namespace MODEXngine.Library.Engine
 
         private readonly Type _initialGameState;
 
-        private string _title;
+        private readonly string _windowTitle;
 
-        public MainGame(string gameName, Type initialGameState)
+        public MainGame(string windowTitle, Type initialGameState)
         {
-            _title = gameName;
+            _windowTitle = windowTitle;
 
             _initialGameState = initialGameState;
 
@@ -55,7 +55,7 @@ namespace MODEXngine.Library.Engine
 
         protected override void Initialize()
         {
-            Window.Title = _title;
+            Window.Title = _windowTitle;
 
             _gsContainer = new GameStateContainer
             {
