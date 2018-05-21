@@ -10,14 +10,26 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
                 <!-- Accent and AppTheme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="Label" x:Key="Logo">
-                <Setter Property="FontSize" Value="20" />
+            <Style TargetType="Label" x:Key="LogoStyle">
+                <Setter Property="FontSize" Value="40" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,10,0,10" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="VersionStyle">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+            
+            <Style TargetType="ListBox" x:Key="GameListBoxStyle">
+                <Setter Property="Margin" Value="0,10,0,10" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

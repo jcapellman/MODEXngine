@@ -7,28 +7,40 @@
         xmlns:local="clr-namespace:MODEXngine"
         xmlns:viewModels="clr-namespace:MODEXngine.ViewModels"
         mc:Ignorable="d"
-        Title="MODEXngine" Height="450" Width="800">
+        Height="350" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Controls:MetroWindow.DataContext>
         <viewModels:MainWindowViewModel />
     </Controls:MetroWindow.DataContext>
 
-    <Grid>
+    <Grid Margin="20,20,20,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="MODEXngine" Style="{StaticResource Logo}" />
-        
-        <Controls:DropDownButton Grid.Row="1" ItemsSource="{Binding GameHeaders}">
-            <Controls:DropDownButton.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding GameName}" />
-                </DataTemplate>
-            </Controls:DropDownButton.ItemTemplate>
-        </Controls:DropDownButton>
+        <Label Grid.Row="0" Content="MODEXngine" Style="{StaticResource LogoStyle}" />
 
-        <Button Grid.Row="2" Content="Start Game" />
+        <ListBox Grid.Row="1" SelectedItem="{Binding SelectedGameHeader}" Style="{StaticResource GameListBoxStyle}" ItemsSource="{Binding GameHeaders}" DisplayMemberPath="GameName" />
+
+        <Button Grid.Row="2" Content="Start Game" IsEnabled="{Binding btnStartGameEnabled, Mode=TwoWay}" />
+        
+        <Label Grid.Row="3" Style="{StaticResource VersionStyle}" Content="Version 0.1" />
+        
+        <Grid Grid.Row="4" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_browser}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </Grid>
     </Grid>
 </Controls:MetroWindow>
