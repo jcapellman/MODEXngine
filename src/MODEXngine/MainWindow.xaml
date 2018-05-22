@@ -25,7 +25,7 @@
 
         <ListBox Grid.Row="1" SelectedItem="{Binding SelectedGameHeader}" Style="{StaticResource GameListBoxStyle}" ItemsSource="{Binding GameHeaders}" DisplayMemberPath="GameName" />
 
-        <Button Grid.Row="2" Content="Start Game" IsEnabled="{Binding btnStartGameEnabled, Mode=TwoWay}" />
+        <Button Grid.Row="2" Content="Start Game" Command="{Binding LaunchGameCommand}" IsEnabled="{Binding btnStartGameEnabled, Mode=TwoWay}" />
         
         <Label Grid.Row="3" Style="{StaticResource VersionStyle}" Content="Version 0.1" />
         

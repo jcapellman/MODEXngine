@@ -16,6 +16,8 @@ namespace MODEXngine.ViewModels
         public ICommand GotoWebsiteCommand =>
             new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
 
+        public ICommand LaunchGameCommand => new DelegateCommand( () => new GameWindow(SelectedGameHeader).Run());
+
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
         public ObservableCollection<BaseGameHeader> GameHeaders
