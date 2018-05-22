@@ -3,13 +3,19 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Input;
 
 using MODEXngine.lib;
+
+using Prism.Commands;
 
 namespace MODEXngine.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        public ICommand GotoWebsiteCommand =>
+            new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
+
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
         public ObservableCollection<BaseGameHeader> GameHeaders

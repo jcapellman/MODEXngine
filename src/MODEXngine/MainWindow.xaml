@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+            <Button Grid.Column="0" Width="50" Height="50" Command="{Binding GotoWebsiteCommand}" Style="{DynamicResource MetroCircleButtonStyle}">
                 <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_browser}" />
