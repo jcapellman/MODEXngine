@@ -6,17 +6,19 @@ using System.Reflection;
 using System.Windows.Input;
 
 using MODEXngine.lib;
-
+using MODEXngine.renderlib.opengl;
 using Prism.Commands;
 
 namespace MODEXngine.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private BaseRenderer _selectedRenderer;
+
         public ICommand GotoWebsiteCommand =>
             new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
 
-        public ICommand LaunchGameCommand => new DelegateCommand( () => new GameWindow(SelectedGameHeader).Run());
+        public ICommand LaunchGameCommand => new DelegateCommand( () => _selectedRenderer.Render());
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
@@ -73,6 +75,8 @@ namespace MODEXngine.ViewModels
             }
 
             SelectedGameHeader = GameHeaders.FirstOrDefault();
+
+            _selectedRenderer = new OpenGLRenderer(SelectedGameHeader);
 
             btnStartGameEnabled = true;
         }

@@ -78,7 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameWindow.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -140,6 +139,10 @@
     <ProjectReference Include="..\MODEXngine.lib\MODEXngine.lib.csproj">
       <Project>{bad71555-dc5e-47e3-b9b3-50009d0ecd11}</Project>
       <Name>MODEXngine.lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MODEXngine.renderlib.opengl\MODEXngine.renderlib.opengl.csproj">
+      <Project>{14511D4B-1E81-480E-B600-D3E3468386FF}</Project>
+      <Name>MODEXngine.renderlib.opengl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
