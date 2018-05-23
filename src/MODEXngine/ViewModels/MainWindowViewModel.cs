@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 using MODEXngine.lib;
 using MODEXngine.renderlib.opengl;
+
 using Prism.Commands;
 
 namespace MODEXngine.ViewModels
@@ -19,6 +20,8 @@ namespace MODEXngine.ViewModels
             new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
 
         public ICommand LaunchGameCommand => new DelegateCommand( () => _selectedRenderer.Render());
+
+        public ICommand SettingsFlyOutVisibleCommand => new DelegateCommand(() => SettingsFlyOutVisible = !SettingsFlyOutVisible );
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
@@ -35,6 +38,14 @@ namespace MODEXngine.ViewModels
             get => _selectedGameHeader;
 
             set { _selectedGameHeader = value; OnPropertyChanged(); }
+        }
+
+        private bool _SettingsFlyOutVisible;
+
+        public bool SettingsFlyOutVisible
+        {
+            set { _SettingsFlyOutVisible = value; OnPropertyChanged(); }
+            get => _SettingsFlyOutVisible;
         }
 
         private bool _btnStartGameEnabled;
