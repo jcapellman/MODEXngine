@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using System.Windows;
+using MahApps.Metro.Controls;
 
 using MODEXngine.ViewModels;
 
@@ -15,6 +16,11 @@ namespace MODEXngine
             DataContext = new MainWindowViewModel();
 
             viewModel.LoadVM();
+        }
+
+        private void btnSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            FoSettings.IsOpen = true;
         }
     }
 }

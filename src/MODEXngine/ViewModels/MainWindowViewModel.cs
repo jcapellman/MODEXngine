@@ -21,8 +21,6 @@ namespace MODEXngine.ViewModels
 
         public ICommand LaunchGameCommand => new DelegateCommand( () => _selectedRenderer.Render());
 
-        public ICommand SettingsFlyOutVisibleCommand => new DelegateCommand(() => SettingsFlyOutVisible = !SettingsFlyOutVisible );
-
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
         public ObservableCollection<BaseGameHeader> GameHeaders
@@ -38,14 +36,6 @@ namespace MODEXngine.ViewModels
             get => _selectedGameHeader;
 
             set { _selectedGameHeader = value; OnPropertyChanged(); }
-        }
-
-        private bool _SettingsFlyOutVisible;
-
-        public bool SettingsFlyOutVisible
-        {
-            set { _SettingsFlyOutVisible = value; OnPropertyChanged(); }
-            get => _SettingsFlyOutVisible;
         }
 
         private bool _btnStartGameEnabled;

@@ -26,9 +26,9 @@
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
-            
+
             <Style TargetType="ListBox" x:Key="GameListBoxStyle">
-                <Setter Property="Margin" Value="0,10,0,10" />
+                <Setter Property="Margin" Value="0,10,0,25" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
             </Style>
         </ResourceDictionary>
