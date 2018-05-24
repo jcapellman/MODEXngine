@@ -4,6 +4,8 @@ using System.Windows.Input;
 
 using MODEXngine.Common;
 using MODEXngine.lib;
+using MODEXngine.lib.CommonObjects;
+using MODEXngine.lib.Managers;
 
 using Prism.Commands;
 
@@ -19,6 +21,14 @@ namespace MODEXngine.ViewModels
             _selectedRenderer.SetGameHeader(SelectedGameHeader);
             _selectedRenderer.Render();
         });
+
+        private Settings _settings;
+
+        public Settings Settings
+        {
+            set { _settings = value; OnPropertyChanged(); }
+            get => _settings;
+        }
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
@@ -53,7 +63,7 @@ namespace MODEXngine.ViewModels
 
             set { _selectedRenderer = value; OnPropertyChanged(); }
         }
-
+        
         private bool _btnStartGameEnabled;
 
         public bool btnStartGameEnabled
@@ -66,19 +76,19 @@ namespace MODEXngine.ViewModels
         {
             btnStartGameEnabled = false;
 
+            Settings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
+
             GameHeaders = new ObservableCollection<BaseGameHeader>(LoadAssemblies<BaseGameHeader>(Constants.ASSEMBLY_MASK_GAME_LIBS).OrderBy(a => a.GameName));
 
-            if (GameHeaders.Any())
-            {
-                SelectedGameHeader = GameHeaders.FirstOrDefault();
-            }
+            var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == Settings.PreviousGame);
+
+            SelectedGameHeader = selectedGame ?? GameHeaders.FirstOrDefault();
 
             Renderers = new ObservableCollection<BaseRenderer>(LoadAssemblies<BaseRenderer>(Constants.ASSEMBLY_MASK_RENDER_LIBS).OrderBy(a => a.Name));
 
-            if (Renderers.Any())
-            {
-                _selectedRenderer = Renderers.FirstOrDefault();
-            }
+            var selectedRenderer = Renderers.FirstOrDefault(a => a.Name == Settings.Renderer);
+
+            SelectedRenderer = selectedRenderer ?? Renderers.FirstOrDefault();
             
             btnStartGameEnabled = true;
         }
