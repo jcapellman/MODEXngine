@@ -4,3 +4,4 @@ obj/
 *.lock.json
 /Properties/PublishProfiles
 packages/
+Debug/

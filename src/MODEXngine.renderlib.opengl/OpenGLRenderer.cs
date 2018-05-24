@@ -9,11 +9,11 @@ namespace MODEXngine.renderlib.opengl
     {
         private OpenTK.GameWindow gWindow;
 
-        public OpenGLRenderer(BaseGameHeader gameHeader) : base(gameHeader)
+        public OpenGLRenderer()
         {
             gWindow = new OpenTK.GameWindow(640, 480, GraphicsMode.Default)
             {
-                Title = gameHeader.GameName
+                Title = string.Empty
             };
 
             gWindow.RenderFrame += GWindow_RenderFrame;
@@ -27,8 +27,12 @@ namespace MODEXngine.renderlib.opengl
             gWindow.SwapBuffers();
         }
 
+        public override string Name => "OpenGL";
+
         public override void Render()
         {
+            gWindow.Title = GameHeader.GameName;
+
             gWindow.Run(1.0 / 60.0);
         }
     }

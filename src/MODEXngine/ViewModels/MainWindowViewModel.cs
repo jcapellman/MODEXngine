@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,6 @@ using System.Reflection;
 using System.Windows.Input;
 
 using MODEXngine.lib;
-using MODEXngine.renderlib.opengl;
 
 using Prism.Commands;
 
@@ -14,12 +14,14 @@ namespace MODEXngine.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private BaseRenderer _selectedRenderer;
-
         public ICommand GotoWebsiteCommand =>
             new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
 
-        public ICommand LaunchGameCommand => new DelegateCommand( () => _selectedRenderer.Render());
+        public ICommand LaunchGameCommand => new DelegateCommand( () =>
+        {
+            _selectedRenderer.SetGameHeader(SelectedGameHeader);
+            _selectedRenderer.Render();
+        });
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
@@ -28,6 +30,16 @@ namespace MODEXngine.ViewModels
             get => _gameHeaders;
             set { _gameHeaders = value; OnPropertyChanged(); }
         }
+
+
+        private ObservableCollection<BaseRenderer> _renderers;
+
+        public ObservableCollection<BaseRenderer> Renderers
+        {
+            get => _renderers;
+            set { _renderers = value; OnPropertyChanged(); }
+        }
+
 
         private BaseGameHeader _selectedGameHeader;
 
@@ -38,6 +50,15 @@ namespace MODEXngine.ViewModels
             set { _selectedGameHeader = value; OnPropertyChanged(); }
         }
 
+        private BaseRenderer _selectedRenderer;
+
+        public BaseRenderer SelectedRenderer
+        {
+            get => _selectedRenderer;
+
+            set { _selectedRenderer = value; OnPropertyChanged(); }
+        }
+
         private bool _btnStartGameEnabled;
 
         public bool btnStartGameEnabled
@@ -46,11 +67,9 @@ namespace MODEXngine.ViewModels
             get => _btnStartGameEnabled;
         }
 
-        public void LoadVM()
+        private List<BaseGameHeader> LoadGames()
         {
-            btnStartGameEnabled = false;
-
-            GameHeaders = new ObservableCollection<BaseGameHeader>();
+            var gameHeaders = new List<BaseGameHeader>();
 
             var assemblies = Directory.GetFiles(AppContext.BaseDirectory, "MODEXngine.lib.*.dll");
 
@@ -65,20 +84,53 @@ namespace MODEXngine.ViewModels
                     continue;
                 }
 
-                GameHeaders.Add((BaseGameHeader)Activator.CreateInstance(headerType));
+                gameHeaders.Add((BaseGameHeader)Activator.CreateInstance(headerType));
             }
 
-            GameHeaders = new ObservableCollection<BaseGameHeader>(GameHeaders.OrderBy(a => a.GameName));
+            return gameHeaders;
+        }
 
-            if (!GameHeaders.Any())
+        private List<BaseRenderer> LoadRenderers()
+        {
+            var renderers = new List<BaseRenderer>();
+
+            var assemblies = Directory.GetFiles(AppContext.BaseDirectory, "MODEXngine.renderlib.*.dll");
+
+            foreach (var assembly in assemblies)
             {
-                return;
+                var asm = Assembly.LoadFile(assembly);
+
+                var headerType = asm.GetExportedTypes().FirstOrDefault(a => typeof(BaseRenderer).IsAssignableFrom(a));
+
+                if (headerType == null)
+                {
+                    continue;
+                }
+
+                renderers.Add((BaseRenderer)Activator.CreateInstance(headerType));
             }
 
-            SelectedGameHeader = GameHeaders.FirstOrDefault();
+            return renderers;
+        }
 
-            _selectedRenderer = new OpenGLRenderer(SelectedGameHeader);
+        public void LoadVM()
+        {
+            btnStartGameEnabled = false;
 
+            GameHeaders = new ObservableCollection<BaseGameHeader>(LoadGames().OrderBy(a => a.GameName));
+
+            if (GameHeaders.Any())
+            {
+                SelectedGameHeader = GameHeaders.FirstOrDefault();
+            }
+
+            Renderers = new ObservableCollection<BaseRenderer>(LoadRenderers().OrderBy(a => a.Name));
+
+            if (Renderers.Any())
+            {
+                _selectedRenderer = Renderers.FirstOrDefault();
+            }
+            
             btnStartGameEnabled = true;
         }
     }

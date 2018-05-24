@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+
 using MahApps.Metro.Controls;
 
 using MODEXngine.ViewModels;
@@ -12,7 +13,7 @@ namespace MODEXngine
         public MainWindow()
         {
             InitializeComponent();
-
+            
             DataContext = new MainWindowViewModel();
 
             viewModel.LoadVM();

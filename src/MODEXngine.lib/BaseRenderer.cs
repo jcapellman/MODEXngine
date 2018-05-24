@@ -4,10 +4,12 @@
     {
         protected BaseGameHeader GameHeader;
 
-        protected BaseRenderer(BaseGameHeader gameHeader)
+        public void SetGameHeader(BaseGameHeader gameHeader)
         {
             GameHeader = gameHeader;
         }
+
+        public abstract string Name { get; }
 
         public abstract void Render();
     }
