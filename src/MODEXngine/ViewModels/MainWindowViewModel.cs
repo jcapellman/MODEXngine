@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Input;
 
+using MODEXngine.Common;
 using MODEXngine.lib;
 
 using Prism.Commands;
@@ -31,7 +28,6 @@ namespace MODEXngine.ViewModels
             set { _gameHeaders = value; OnPropertyChanged(); }
         }
 
-
         private ObservableCollection<BaseRenderer> _renderers;
 
         public ObservableCollection<BaseRenderer> Renderers
@@ -39,7 +35,6 @@ namespace MODEXngine.ViewModels
             get => _renderers;
             set { _renderers = value; OnPropertyChanged(); }
         }
-
 
         private BaseGameHeader _selectedGameHeader;
 
@@ -66,65 +61,19 @@ namespace MODEXngine.ViewModels
             set { _btnStartGameEnabled = value; OnPropertyChanged(); }
             get => _btnStartGameEnabled;
         }
-
-        private List<BaseGameHeader> LoadGames()
-        {
-            var gameHeaders = new List<BaseGameHeader>();
-
-            var assemblies = Directory.GetFiles(AppContext.BaseDirectory, "MODEXngine.lib.*.dll");
-
-            foreach (var assembly in assemblies)
-            {
-                var asm = Assembly.LoadFile(assembly);
-
-                var headerType = asm.GetExportedTypes().FirstOrDefault(a => typeof(BaseGameHeader).IsAssignableFrom(a));
-
-                if (headerType == null)
-                {
-                    continue;
-                }
-
-                gameHeaders.Add((BaseGameHeader)Activator.CreateInstance(headerType));
-            }
-
-            return gameHeaders;
-        }
-
-        private List<BaseRenderer> LoadRenderers()
-        {
-            var renderers = new List<BaseRenderer>();
-
-            var assemblies = Directory.GetFiles(AppContext.BaseDirectory, "MODEXngine.renderlib.*.dll");
-
-            foreach (var assembly in assemblies)
-            {
-                var asm = Assembly.LoadFile(assembly);
-
-                var headerType = asm.GetExportedTypes().FirstOrDefault(a => typeof(BaseRenderer).IsAssignableFrom(a));
-
-                if (headerType == null)
-                {
-                    continue;
-                }
-
-                renderers.Add((BaseRenderer)Activator.CreateInstance(headerType));
-            }
-
-            return renderers;
-        }
-
+        
         public void LoadVM()
         {
             btnStartGameEnabled = false;
 
-            GameHeaders = new ObservableCollection<BaseGameHeader>(LoadGames().OrderBy(a => a.GameName));
+            GameHeaders = new ObservableCollection<BaseGameHeader>(LoadAssemblies<BaseGameHeader>(Constants.ASSEMBLY_MASK_GAME_LIBS).OrderBy(a => a.GameName));
 
             if (GameHeaders.Any())
             {
                 SelectedGameHeader = GameHeaders.FirstOrDefault();
             }
 
-            Renderers = new ObservableCollection<BaseRenderer>(LoadRenderers().OrderBy(a => a.Name));
+            Renderers = new ObservableCollection<BaseRenderer>(LoadAssemblies<BaseRenderer>(Constants.ASSEMBLY_MASK_RENDER_LIBS).OrderBy(a => a.Name));
 
             if (Renderers.Any())
             {
