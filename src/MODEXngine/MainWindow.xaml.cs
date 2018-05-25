@@ -23,5 +23,12 @@ namespace MODEXngine
         {
             FoSettings.IsOpen = true;
         }
+
+        private void btnSaveSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            viewModel.SaveSettings();
+
+            FoSettings.IsOpen = false;
+        }
     }
 }

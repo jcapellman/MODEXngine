@@ -1,5 +1,8 @@
-﻿using MODEXngine.lib;
-
+﻿using System.Collections.Generic;
+using System.Linq;
+using MODEXngine.lib;
+using MODEXngine.lib.CommonObjects;
+using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 
@@ -8,17 +11,7 @@ namespace MODEXngine.renderlib.opengl
     public class OpenGLRenderer : BaseRenderer
     {
         private OpenTK.GameWindow gWindow;
-
-        public OpenGLRenderer()
-        {
-            gWindow = new OpenTK.GameWindow(640, 480, GraphicsMode.Default)
-            {
-                Title = string.Empty
-            };
-
-            gWindow.RenderFrame += GWindow_RenderFrame;
-        }
-
+        
         private void GWindow_RenderFrame(object sender, OpenTK.FrameEventArgs e)
         {
             GL.ClearColor(0, 0, 0, 1);
@@ -31,9 +24,27 @@ namespace MODEXngine.renderlib.opengl
 
         public override void Render()
         {
-            gWindow.Title = GameHeader.GameName;
+            gWindow = new OpenTK.GameWindow(Settings.Resolution.Width, Settings.Resolution.Height, GraphicsMode.Default)
+            {
+                Title = GameHeader.GameName
+            };
+
+            gWindow.RenderFrame += GWindow_RenderFrame;
+
+            if (Settings.IsFullScreen)
+            {
+                gWindow.WindowState = WindowState.Fullscreen;
+            }
 
             gWindow.Run(1.0 / 60.0);
         }
+
+        public override List<Resolution> SupportedResolutions() => OpenTK.DisplayDevice.GetDisplay(0).AvailableResolutions.Select(a => new Resolution
+        {
+            Height = a.Height,
+            Width = a.Width,
+            BPP = a.BitsPerPixel,
+            RefreshRate = a.RefreshRate
+        }).ToList();
     }
 }

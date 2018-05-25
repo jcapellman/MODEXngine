@@ -15,7 +15,37 @@
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="FoSettings" Header="settings" Opacity=".95" Position="Right" Width="250" Theme="Light">
-                <Button Content="save" />
+                <Grid Margin="10,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource MetroLabel}" Content="renderer" />
+                    <ListBox Grid.Row="1" Margin="5,0,5,0" DisplayMemberPath="Name" ItemsSource="{Binding Renderers, Mode=TwoWay}" SelectedItem="{Binding SelectedRenderer}" />
+
+                    <Label Grid.Row="2" Style="{StaticResource MetroLabel}" Content="resolution" />
+                    <ComboBox Grid.Row="3" Margin="5,0,5,0" SelectedItem="{Binding SelectedResolution, Mode=TwoWay}" Style="{StaticResource MetroComboBox}" ItemsSource="{Binding AvailableResolutions, Mode=TwoWay}" />
+
+                    <Label Grid.Row="4" Style="{StaticResource MetroLabel}" Content="full screen" />
+                    <Controls:ToggleSwitch Grid.Row="5" Margin="5,0,0,0" IsChecked="{Binding Settings.IsFullScreen, Mode=TwoWay}" />
+
+                    <Button Grid.Row="6" Width="50" Height="50" Click="btnSaveSettings_OnClick" Style="{DynamicResource MetroCircleButtonStyle}">
+                        <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_save}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                </Grid>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>

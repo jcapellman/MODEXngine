@@ -15,19 +15,38 @@ namespace MODEXngine.ViewModels
     {
         public ICommand GotoWebsiteCommand =>
             new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
-
+        
         public ICommand LaunchGameCommand => new DelegateCommand( () =>
         {
-            _selectedRenderer.SetGameHeader(SelectedGameHeader);
+            _selectedRenderer.SetGameLaunchItems(SelectedGameHeader, Settings);
             _selectedRenderer.Render();
         });
 
+        public ICommand SaveSettingsCommand => new DelegateCommand(SaveSettings);
+
+        public void SaveSettings()
+        {
+            SettingsManager.SaveSettings(Constants.FILE_NAME_SETTINGS, Settings);
+        }
+        
         private Settings _settings;
 
         public Settings Settings
         {
             set { _settings = value; OnPropertyChanged(); }
             get => _settings;
+        }
+
+        private ObservableCollection<Resolution> _availableResolutions;
+
+        public ObservableCollection<Resolution> AvailableResolutions
+        {
+            get => _availableResolutions;
+            set
+            {
+                _availableResolutions = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
@@ -54,6 +73,18 @@ namespace MODEXngine.ViewModels
 
             set { _selectedGameHeader = value; OnPropertyChanged(); }
         }
+        
+        public Resolution SelectedResolution
+        {
+            get => Settings.Resolution;
+            set { Settings.Resolution = value; OnPropertyChanged(); }
+        }
+
+        public bool IsFullScreen
+        {
+            get => Settings.IsFullScreen;
+            set { Settings.IsFullScreen = value; OnPropertyChanged(); }
+        }
 
         private BaseRenderer _selectedRenderer;
 
@@ -61,7 +92,9 @@ namespace MODEXngine.ViewModels
         {
             get => _selectedRenderer;
 
-            set { _selectedRenderer = value; OnPropertyChanged(); }
+            set { _selectedRenderer = value; OnPropertyChanged();
+                AvailableResolutions = new ObservableCollection<Resolution>(_selectedRenderer.SupportedResolutions());
+            }
         }
         
         private bool _btnStartGameEnabled;
@@ -71,13 +104,16 @@ namespace MODEXngine.ViewModels
             set { _btnStartGameEnabled = value; OnPropertyChanged(); }
             get => _btnStartGameEnabled;
         }
+
+        public MainWindowViewModel()
+        {
+            Settings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
+        }
         
         public void LoadVM()
         {
             btnStartGameEnabled = false;
-
-            Settings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
-
+            
             GameHeaders = new ObservableCollection<BaseGameHeader>(LoadAssemblies<BaseGameHeader>(Constants.ASSEMBLY_MASK_GAME_LIBS).OrderBy(a => a.GameName));
 
             var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == Settings.PreviousGame);

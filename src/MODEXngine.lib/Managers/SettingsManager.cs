@@ -10,10 +10,16 @@ namespace MODEXngine.lib.Managers
     {
         private static Settings GetDefaultSettings() => new Settings
         {
-            Resolution = new Resolution {Width = 640, Height = 480},
+            Resolution = new Resolution {Width = 640, Height = 480, RefreshRate = 60, BPP = 32},
             Renderer = "OpenGL",
-            PreviousGame = "Dark Forces"
+            PreviousGame = "Dark Forces",
+            IsFullScreen = true
         };
+
+        public static void SaveSettings(string fileName, Settings settings)
+        {
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(settings));
+        }
 
         public static Settings LoadSettings(string fileName)
         {

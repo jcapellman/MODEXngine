@@ -7,5 +7,7 @@
         public string Renderer { get; set; }
 
         public Resolution Resolution { get; set; }
+
+        public bool IsFullScreen { get; set; }
     }
 }
