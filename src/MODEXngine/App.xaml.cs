@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Windows;
 
 using MODEXngine.Common;
 using MODEXngine.lib;
@@ -12,7 +11,7 @@ using MODEXngine.lib.Managers;
 
 namespace MODEXngine
 {
-    public partial class App : Application
+    public partial class App
     {
         public static Settings AppSettings;
 

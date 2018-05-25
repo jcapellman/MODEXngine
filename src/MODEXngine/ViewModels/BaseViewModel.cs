@@ -12,6 +12,10 @@ namespace MODEXngine.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public event EventHandler<string> GUIMessage;
+
+        protected void OnGUIMessage(string message) => GUIMessage?.Invoke(this, message);
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

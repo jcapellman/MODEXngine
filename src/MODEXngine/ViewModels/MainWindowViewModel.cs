@@ -17,7 +17,14 @@ namespace MODEXngine.ViewModels
         public ICommand LaunchGameCommand => new DelegateCommand( () =>
         {
             var selectedRenderer = App.Renderers.FirstOrDefault(a => a.Name == App.AppSettings.Renderer);
-            
+
+            if (selectedRenderer == null)
+            {
+                OnGUIMessage($"{App.AppSettings.Renderer} was not found");
+
+                return;
+            }
+
             selectedRenderer.WindowClosed -= _selectedRenderer_WindowClosed;
             selectedRenderer.WindowClosed += _selectedRenderer_WindowClosed;
 
@@ -27,7 +34,7 @@ namespace MODEXngine.ViewModels
 
             selectedRenderer.Render();
         });
-
+        
         private Visibility _mainWindowVisibility;
 
         public Visibility MainWindowVisibility

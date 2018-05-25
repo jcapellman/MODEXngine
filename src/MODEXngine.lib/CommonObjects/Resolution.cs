@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MODEXngine.lib.CommonObjects
+﻿namespace MODEXngine.lib.CommonObjects
 {
     public class Resolution
     {
@@ -8,10 +6,10 @@ namespace MODEXngine.lib.CommonObjects
 
         public int Height { get; set; }
 
-        public int BPP { get; set; }
+        public int Bpp { get; set; }
 
-        public Single RefreshRate { get; set; }
+        public float RefreshRate { get; set; }
 
-        public override string ToString() => $"{Width}x{Height}x{BPP}@{RefreshRate}";
+        public override string ToString() => $"{Width}x{Height}x{Bpp}@{RefreshRate}";
     }
 }

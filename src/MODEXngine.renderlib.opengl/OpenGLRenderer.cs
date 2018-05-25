@@ -48,7 +48,7 @@ namespace MODEXngine.renderlib.opengl
         {
             Height = a.Height,
             Width = a.Width,
-            BPP = a.BitsPerPixel,
+            Bpp = a.BitsPerPixel,
             RefreshRate = a.RefreshRate
         }).ToList();
     }

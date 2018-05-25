@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows;
 
-using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 using MODEXngine.ViewModels;
 
 namespace MODEXngine
 {
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow
     {
-        private MainWindowViewModel viewModel => (MainWindowViewModel) DataContext;
+        private MainWindowViewModel ViewModel => (MainWindowViewModel) DataContext;
 
         public MainWindow()
         {
@@ -17,7 +17,14 @@ namespace MODEXngine
             
             DataContext = new MainWindowViewModel();
 
-            viewModel.LoadVM();
+            ViewModel.GUIMessage += ViewModel_GUIMessage;
+
+            ViewModel.LoadVM();
+        }
+
+        private void ViewModel_GUIMessage(object sender, string e)
+        {
+            this.ShowMessageAsync("MODEXngine", e);
         }
 
         private void btnSettings_OnClick(object sender, RoutedEventArgs e)
