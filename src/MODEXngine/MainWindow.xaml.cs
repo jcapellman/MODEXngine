@@ -3,6 +3,7 @@ using System.Windows;
 
 using MahApps.Metro.Controls.Dialogs;
 
+using MODEXngine.Common;
 using MODEXngine.ViewModels;
 
 namespace MODEXngine
@@ -24,7 +25,7 @@ namespace MODEXngine
 
         private void ViewModel_GUIMessage(object sender, string e)
         {
-            this.ShowMessageAsync("MODEXngine", e);
+            this.ShowMessageAsync(Constants.NAME_APP, e);
         }
 
         private void btnSettings_OnClick(object sender, RoutedEventArgs e)
