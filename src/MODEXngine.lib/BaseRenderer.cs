@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 using MODEXngine.lib.CommonObjects;
 
 namespace MODEXngine.lib
@@ -7,6 +9,13 @@ namespace MODEXngine.lib
     {
         protected BaseGameHeader GameHeader;
         protected Settings Settings;
+
+        public event EventHandler WindowClosed;
+
+        protected void OnWindowClosed()
+        {
+            WindowClosed?.Invoke(this, null);
+        }
 
         public void SetGameLaunchItems(BaseGameHeader gameHeader, Settings settings)
         {

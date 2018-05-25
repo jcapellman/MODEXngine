@@ -30,13 +30,18 @@ namespace MODEXngine.renderlib.opengl
             };
 
             gWindow.RenderFrame += GWindow_RenderFrame;
-
+            gWindow.Closed += GWindow_Closed;
             if (Settings.IsFullScreen)
             {
                 gWindow.WindowState = WindowState.Fullscreen;
             }
 
             gWindow.Run(1.0 / 60.0);
+        }
+
+        private void GWindow_Closed(object sender, System.EventArgs e)
+        {
+            OnWindowClosed();
         }
 
         public override List<Resolution> SupportedResolutions() => OpenTK.DisplayDevice.GetDisplay(0).AvailableResolutions.Select(a => new Resolution

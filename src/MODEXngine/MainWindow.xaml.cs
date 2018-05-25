@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 using MahApps.Metro.Controls;
 
@@ -23,11 +24,9 @@ namespace MODEXngine
         {
             FoSettings.IsOpen = true;
         }
-
-        private void btnSaveSettings_OnClick(object sender, RoutedEventArgs e)
+        
+        private void onSettings_Closed(object sender, EventArgs e)
         {
-            viewModel.SaveSettings();
-
             FoSettings.IsOpen = false;
         }
     }
