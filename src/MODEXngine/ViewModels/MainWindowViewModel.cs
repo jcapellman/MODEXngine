@@ -1,28 +1,28 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 
-using GalaSoft.MvvmLight.CommandWpf;
-
 using MODEXngine.lib;
+using MODEXngine.ViewModels.Base;
+
+using Xamarin.Forms;
 
 namespace MODEXngine.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
         public ICommand GotoWebsiteCommand =>
-            new RelayCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
+            new Command(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
 
         public ICommand OpenSettingsCommand =>
-            new RelayCommand(() =>
+            new Command(() =>
             {
                 IsSettingsOpen = true;
             });
 
-        public ICommand SettingsClosedCommand => new RelayCommand(() => IsSettingsOpen = false);
+        public ICommand SettingsClosedCommand => new Command(() => IsSettingsOpen = false);
 
-        public ICommand LaunchGameCommand => new RelayCommand( () =>
+        public ICommand LaunchGameCommand => new Command( () =>
         {
             var selectedRenderer = App.Renderers.FirstOrDefault(a => a.Name == App.AppSettings.Renderer);
 
@@ -38,22 +38,22 @@ namespace MODEXngine.ViewModels
 
             selectedRenderer.SetGameLaunchItems(SelectedGameHeader, App.AppSettings);
 
-            MainWindowVisibility = Visibility.Hidden;
+            MainWindowVisible = false;
 
             selectedRenderer.Render();
         });
         
-        private Visibility _mainWindowVisibility;
+        private bool _mainWindowVisible;
 
-        public Visibility MainWindowVisibility
+        public bool MainWindowVisible
         {
-            get => _mainWindowVisibility;
-            set { _mainWindowVisibility = value; OnPropertyChanged(); }
+            get => _mainWindowVisible;
+            set { _mainWindowVisible = value; OnPropertyChanged(); }
         }
 
         private void _selectedRenderer_WindowClosed(object sender, System.EventArgs e)
         {
-            MainWindowVisibility = Visibility.Visible;
+            MainWindowVisible = true;
         }
         
         private ObservableCollection<BaseGameHeader> _gameHeaders;

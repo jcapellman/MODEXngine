@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:converters="clr-namespace:ConferenceVision.Converters"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="PageBackgroundColor">#2e2e2e</Color>
+    <Color x:Key="TextColor">White</Color>
+
+    <Color x:Key="MenuBackgroundColor">#007ACC</Color>
+    <Color x:Key="MenuTextColor">White</Color>
+
+    <Style TargetType="ContentPage" x:Key="PageStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+    </Style>
+
+    <Style TargetType="ContentPage" x:Key="MenuPageStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource MenuBackgroundColor}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="FieldLabel">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style TargetType="FlexLayout" x:Key="FormLayout">
+        <Setter Property="Margin" Value="20,20,20,20" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="FormGroup">
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+</ResourceDictionary>

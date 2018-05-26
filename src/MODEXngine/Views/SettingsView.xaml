@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MODEXngine.Views.SettingsView"
+             Style="{StaticResource PageStyle}"
+             Title="Settings">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/Settings.xaml"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Padding="20,20,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Renderer" />
+                <Picker Grid.Row="1" ItemsSource="{Binding Renderers}" SelectedItem="{Binding SelectedRenderer}"  ItemDisplayBinding ="{Binding Name}" />
+            </Grid>
+
+            <Grid Grid.Row="1" Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Resolution" />
+                <Picker Grid.Row="1" ItemsSource="{Binding AvailableResolutions}" SelectedItem="{Binding SelectedResolution}" />
+            </Grid>
+
+            <Grid Grid.Row="2" Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Fullscreen" />
+                <Switch Grid.Row="1" IsToggled="{Binding IsFullScreen}" />
+            </Grid>
+
+            <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="Save" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

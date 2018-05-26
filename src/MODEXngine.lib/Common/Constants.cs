@@ -1,6 +1,6 @@
-﻿namespace MODEXngine.Common
+﻿namespace MODEXngine.lib.Common
 {
-    public static class Constants
+    public class Constants
     {
         public const string NAME_APP = "MODEXngine";
 

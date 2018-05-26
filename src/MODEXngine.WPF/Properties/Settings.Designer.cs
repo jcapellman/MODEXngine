@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MODEXngine.Properties
+namespace MODEXngine.WPF.Properties
 {
 
 

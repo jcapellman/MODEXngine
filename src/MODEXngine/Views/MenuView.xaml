@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MODEXngine.Views.MenuView"
+             Style="{StaticResource MenuPageStyle}"
+             Title="Menu">
+    <ListView x:Name="menuItemsListView"
+                  SeparatorVisibility="None"
+                  BackgroundColor="Transparent"
+                  HeightRequest="150"              
+                  VerticalOptions="Start"
+                  HasUnevenRows="false"
+                  ItemsSource="{Binding MenuItems}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Padding="10,10,10,10" HorizontalOptions="FillAndExpand">
+                        <Label VerticalOptions="FillAndExpand" 
+                                   VerticalTextAlignment="Center" 
+                                   Text="{Binding Title}" 
+                                   TextColor="White"
+                                   FontSize="18"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

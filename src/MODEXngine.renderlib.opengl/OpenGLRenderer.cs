@@ -14,7 +14,7 @@ namespace MODEXngine.renderlib.opengl
         
         private void GWindow_RenderFrame(object sender, OpenTK.FrameEventArgs e)
         {
-            GL.ClearColor(0, 0, 0, 1);
+            GL.ClearColor(1, 0, 0, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             gWindow.SwapBuffers();

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-using GalaSoft.MvvmLight.CommandWpf;
-
-using MODEXngine.Common;
 using MODEXngine.lib;
+using MODEXngine.lib.Common;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Managers;
+using MODEXngine.ViewModels.Base;
+
+using Xamarin.Forms;
 
 namespace MODEXngine.ViewModels
 {
@@ -59,20 +59,9 @@ namespace MODEXngine.ViewModels
             }
         }
 
-        public event EventHandler SavedSettings;
+        public ICommand SaveSettingsCommand => new Command(SaveSettings);
 
-        private void OnSavedSettings()
-        {
-            SavedSettings?.Invoke(this, null);
-        }
-
-        public ICommand SaveSettingsCommand => new RelayCommand(() =>
-        {
-            SaveSettings();
-            OnSavedSettings();
-        });
-
-        public void SaveSettings()
+        private void SaveSettings()
         {
             SettingsManager.SaveSettings(Constants.FILE_NAME_SETTINGS, Settings);
 
