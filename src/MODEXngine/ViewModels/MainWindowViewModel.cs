@@ -3,18 +3,18 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-using MODEXngine.lib;
+using GalaSoft.MvvmLight.CommandWpf;
 
-using Prism.Commands;
+using MODEXngine.lib;
 
 namespace MODEXngine.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
         public ICommand GotoWebsiteCommand =>
-            new DelegateCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
+            new RelayCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
         
-        public ICommand LaunchGameCommand => new DelegateCommand( () =>
+        public ICommand LaunchGameCommand => new RelayCommand( () =>
         {
             var selectedRenderer = App.Renderers.FirstOrDefault(a => a.Name == App.AppSettings.Renderer);
 

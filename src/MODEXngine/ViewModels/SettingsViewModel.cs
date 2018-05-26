@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Windows.Input;
 
+using GalaSoft.MvvmLight.CommandWpf;
+
 using MODEXngine.Common;
 using MODEXngine.lib;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Managers;
-
-using Prism.Commands;
 
 namespace MODEXngine.ViewModels
 {
@@ -58,7 +58,7 @@ namespace MODEXngine.ViewModels
             }
         }
 
-        public ICommand SaveSettingsCommand => new DelegateCommand(SaveSettings);
+        public ICommand SaveSettingsCommand => new RelayCommand(SaveSettings);
 
         public void SaveSettings()
         {
