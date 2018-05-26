@@ -9,7 +9,7 @@ namespace MODEXngine.Controls
     public partial class SettingsControl : UserControl
     {
         private SettingsViewModel viewModel => (SettingsViewModel) DataContext;
-
+        
         public event EventHandler Closed;
 
         public void OnClosed()

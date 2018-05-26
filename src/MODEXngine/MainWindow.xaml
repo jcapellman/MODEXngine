@@ -7,14 +7,22 @@
         xmlns:local="clr-namespace:MODEXngine"
         xmlns:viewModels="clr-namespace:MODEXngine.ViewModels"
         xmlns:controls="clr-namespace:MODEXngine.Controls"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         mc:Ignorable="d"
         Visibility="{Binding MainWindowVisibility, Mode=TwoWay}"
         Height="350" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
-            <Controls:Flyout x:Name="FoSettings" Header="settings" Style="{StaticResource SettingsStyle}">
-                <controls:SettingsControl Closed="onSettings_Closed" />
+            <Controls:Flyout x:Name="FoSettings" IsOpen="{Binding IsSettingsVisible, Mode=TwoWay}" Header="settings" Style="{StaticResource SettingsStyle}">
+                <controls:SettingsControl>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Closed">
+                            <cmd:EventToCommand Command="{Binding Mode=OneWay, Path=SettingsClosedCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </controls:SettingsControl>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
@@ -48,7 +56,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Width="50" Height="50" Click="btnSettings_OnClick" Style="{DynamicResource MetroCircleButtonStyle}">
+            <Button Grid.Column="0" Width="50" Height="50" Command="{Binding OpenSettingsCommand}" Style="{DynamicResource MetroCircleButtonStyle}">
                 <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_settings}" />

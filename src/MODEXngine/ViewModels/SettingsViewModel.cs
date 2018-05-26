@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -58,7 +59,18 @@ namespace MODEXngine.ViewModels
             }
         }
 
-        public ICommand SaveSettingsCommand => new RelayCommand(SaveSettings);
+        public event EventHandler SavedSettings;
+
+        private void OnSavedSettings()
+        {
+            SavedSettings?.Invoke(this, null);
+        }
+
+        public ICommand SaveSettingsCommand => new RelayCommand(() =>
+        {
+            SaveSettings();
+            OnSavedSettings();
+        });
 
         public void SaveSettings()
         {

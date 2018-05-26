@@ -13,7 +13,15 @@ namespace MODEXngine.ViewModels
     {
         public ICommand GotoWebsiteCommand =>
             new RelayCommand(() => System.Diagnostics.Process.Start("https://github.com/jcapellman/MODEXngine"));
-        
+
+        public ICommand OpenSettingsCommand =>
+            new RelayCommand(() =>
+            {
+                IsSettingsOpen = true;
+            });
+
+        public ICommand SettingsClosedCommand => new RelayCommand(() => IsSettingsOpen = false);
+
         public ICommand LaunchGameCommand => new RelayCommand( () =>
         {
             var selectedRenderer = App.Renderers.FirstOrDefault(a => a.Name == App.AppSettings.Renderer);
@@ -72,7 +80,20 @@ namespace MODEXngine.ViewModels
             set { _btnStartGameEnabled = value; OnPropertyChanged(); }
             get => _btnStartGameEnabled;
         }
-        
+
+        private bool _isSettingsOpen;
+
+        public bool IsSettingsOpen
+        {
+            get => _isSettingsOpen;
+
+            set
+            {
+                _isSettingsOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void LoadVM()
         {
             btnStartGameEnabled = false;
