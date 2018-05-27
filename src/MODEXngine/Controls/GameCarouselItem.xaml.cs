@@ -1,20 +1,35 @@
-﻿using Xamarin.Forms;
+﻿using MODEXngine.ViewModels;
+
+using Xamarin.Forms;
 
 namespace MODEXngine.Controls
 {
-	public partial class GameCarouselItem : ContentPage
-	{
-	    public static readonly BindableProperty ImageBytesProperty = BindableProperty.Create(nameof(ImageBytes), typeof(byte[]), typeof(GameCarouselItem));
+	public partial class GameCarouselItem : ContentView
+    {
+        private GameCarouselViewModel ViewModel => (GameCarouselViewModel)BindingContext;
 
-	    public byte[] ImageBytes
+        public static readonly BindableProperty ImageSrcProperty = BindableProperty.Create(nameof(ImageSrc), typeof(ImageSource), typeof(GameCarouselItem));
+
+	    public ImageSource ImageSrc
 	    {
-	        get => (byte[])GetValue(ImageBytesProperty);
-	        set => SetValue(ImageBytesProperty, value);
+	        get => ViewModel.ImageSrc;
+	        set => ViewModel.ImageSrc = value;
 	    }
+
+        public static readonly BindableProperty GameNameProperty = BindableProperty.Create(nameof(GameName), typeof(string), typeof(GameCarouselItem));
+
+        public string GameName
+        {
+            get => ViewModel.GameName;
+            set => ViewModel.GameName = value;
+
+        }
 
         public GameCarouselItem ()
 		{
 			InitializeComponent();
+
+		    BindingContext = new GameCarouselViewModel();
 		}
 	}
 }

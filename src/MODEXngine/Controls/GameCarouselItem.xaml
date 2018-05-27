@@ -1,22 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:MODEXngine.Converters"
+             xmlns:viewmodels="clr-namespace:MODEXngine.ViewModels"
              x:Class="MODEXngine.Controls.GameCarouselItem">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:ByteToImageConverter x:Key="cByteToImage" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    <ContentView.BindingContext>
+        <viewmodels:GameCarouselViewModel />
+    </ContentView.BindingContext>
 
-    <ContentPage.Content>
+    <ContentView.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="256" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             
-            <Image Source="{Binding ImageBytes, Converter={StaticResource cByteToImage}}" />
+            <Image Grid.Row="0" Source="{Binding ImageSrc}" />
+            <Label Grid.Row="1" Text="{Binding Name}" />
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

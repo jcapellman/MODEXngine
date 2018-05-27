@@ -19,6 +19,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\darkforcesboxart.jpg" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MODEXngine.lib\MODEXngine.lib.csproj" />

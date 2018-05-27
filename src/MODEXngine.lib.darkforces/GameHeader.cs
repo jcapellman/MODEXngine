@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace MODEXngine.lib.darkforces
 {
@@ -7,17 +8,22 @@ namespace MODEXngine.lib.darkforces
     {
         public override string GameName => "Dark Forces";
 
-        public override byte[] Image
+        public override ImageSource Image
         {
             get
             {
+
+                var source = ImageSource.FromResource("MODEXngine.lib.darkforces.Resources.darkforcesboxart.jpg");
+
                 var assembly = typeof(GameHeader).GetTypeInfo().Assembly;
-                var resource = assembly.GetManifestResourceStream(@"Resources\darkforcesboxart.jpg");
+                var resource = assembly.GetManifestResourceStream(@"MODEXngine.lib.darkforces.Resources.darkforcesboxart.jpg");
 
-                var memoryStream = new MemoryStream();
-                resource?.CopyTo(memoryStream);
+                var ms = new MemoryStream();
+                resource?.CopyTo(ms);
 
-                return memoryStream.ToArray();
+                var source2 = ImageSource.FromStream(() => ms);
+
+                return source2;
             }
         }
     }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MODEXngine.lib.darkforces",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MODEXngine.renderlib.opengl", "MODEXngine.renderlib.opengl\MODEXngine.renderlib.opengl.csproj", "{14511D4B-1E81-480E-B600-D3E3468386FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine", "MODEXngine\MODEXngine.csproj", "{5401D001-455C-4C79-859D-69BCF7D73BBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MODEXngine", "MODEXngine\MODEXngine.csproj", "{5401D001-455C-4C79-859D-69BCF7D73BBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEXngine.WPF", "MODEXngine.WPF\MODEXngine.WPF.csproj", "{3E74EA60-FE60-4EBF-88FE-D92CE50FAFF4}"
 EndProject

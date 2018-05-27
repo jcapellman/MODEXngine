@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace MODEXngine.lib.Managers
 {
-    public class SettingsManager
+    public static class SettingsManager
     {
         private static Settings GetDefaultSettings() => new Settings
         {
