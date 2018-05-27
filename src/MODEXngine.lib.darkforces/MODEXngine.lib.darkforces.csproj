@@ -11,6 +11,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\Debug</OutputPath>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\darkforcesboxart.jpg" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\darkforcesboxart.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MODEXngine.lib\MODEXngine.lib.csproj" />

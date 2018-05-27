@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MODEXngine.Views.GameSelectionView"
     xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
-    Style="{StaticResource PageStyle}"
+             xmlns:controls="clr-namespace:MODEXngine.Controls"
+             Style="{StaticResource PageStyle}"
     Title="Games">
     <ContentPage.Content>
         <Grid Padding="20,20,20,20">
@@ -19,6 +20,17 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Game" />
+                <ListView Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <controls:GameCarouselItem ImageBytes="{Binding Image}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <Picker Grid.Row="1"  ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}" ItemDisplayBinding ="{Binding GameName}" />
             </Grid>
 
