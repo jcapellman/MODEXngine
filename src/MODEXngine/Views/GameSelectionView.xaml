@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MODEXngine.Views.GameSelectionView"
+             xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
     xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:controls="clr-namespace:MODEXngine.Controls"
              Style="{StaticResource PageStyle}"
-    Title="Games">
+    Title="{tl:Translate GameSelection_Title}">
     <ContentPage.Content>
         <Grid Padding="20,20,20,20">
             <Grid.RowDefinitions>
@@ -19,7 +20,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Game" />
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_LabelGame}" />
                 <!-- Commented out until WPF Image Support is more functional -->
                 <!--  <ListView Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}">
                         <ListView.ItemTemplate>
@@ -34,7 +35,7 @@
                 <Picker Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}" ItemDisplayBinding="{Binding GameName}" />
             </Grid>
 
-            <Button Grid.Row="1" Text="Launch Game" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
+            <Button Grid.Row="1" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

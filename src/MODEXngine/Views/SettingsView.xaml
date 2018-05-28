@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MODEXngine.Views.SettingsView"
+             xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
              Style="{StaticResource PageStyle}"
-             Title="Settings">
+             Title="{tl:Translate Settings_Title}">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Styles/Settings.xaml"/>
     </ContentPage.Resources>
@@ -23,7 +24,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Renderer" />
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelRenderer}" />
                 <Picker Grid.Row="1" ItemsSource="{Binding Renderers}" SelectedItem="{Binding SelectedRenderer}" ItemDisplayBinding ="{Binding Name}" />
             </Grid>
 
@@ -33,7 +34,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Resolution" />
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelResolution}" />
                 <Picker Grid.Row="1" ItemsSource="{Binding AvailableResolutions}" SelectedItem="{Binding SelectedResolution}" ItemDisplayBinding="{Binding DisplayString}" />
             </Grid>
 
@@ -43,11 +44,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="Fullscreen" />
+                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelFullScreen}" />
                 <Switch Grid.Row="1" IsToggled="{Binding IsFullScreen}" />
             </Grid>
 
-            <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="Save" />
+            <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

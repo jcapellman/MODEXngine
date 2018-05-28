@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+using MODEXngine.Interfaces;
 using MODEXngine.lib;
 using MODEXngine.lib.Common;
 using MODEXngine.lib.CommonObjects;
@@ -24,7 +25,7 @@ namespace MODEXngine
 
 	    public static List<BaseRenderer> Renderers;
 
-	    private List<T> LoadAssemblies<T>(string mask)
+	    private static List<T> LoadAssemblies<T>(string mask)
 	    {
 	        var assemblies = Directory.GetFiles(AppContext.BaseDirectory, mask);
 
@@ -37,16 +38,30 @@ namespace MODEXngine
 	            select (T)Activator.CreateInstance(headerType)).ToList();
 	    }
 
+	    private static void InitializeLocalization()
+	    {
+	        var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+	        Resx.AppResources.Culture = ci;
+	        DependencyService.Get<ILocalize>().SetLocale(ci);
+        }
+
+	    private static void InitializeAssemblies()
+	    {
+	        AppSettings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
+
+	        GameHeaders = LoadAssemblies<BaseGameHeader>(Constants.ASSEMBLY_MASK_GAME_LIBS);
+
+	        Renderers = LoadAssemblies<BaseRenderer>(Constants.ASSEMBLY_MASK_RENDER_LIBS);
+        }
+
         public App ()
 		{
 			InitializeComponent();
 
-		    AppSettings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
-
-		    GameHeaders = LoadAssemblies<BaseGameHeader>(Constants.ASSEMBLY_MASK_GAME_LIBS);
-
-		    Renderers = LoadAssemblies<BaseRenderer>(Constants.ASSEMBLY_MASK_RENDER_LIBS);
-
+		    InitializeLocalization();    
+          
+            InitializeAssemblies();
+            
             MainPage = new MasterView();
         }
 	}
