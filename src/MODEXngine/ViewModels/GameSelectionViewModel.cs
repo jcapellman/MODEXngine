@@ -10,6 +10,30 @@ namespace MODEXngine.ViewModels
 {
     public class GameSelectionViewModel : BaseViewModel
     {
+        private bool _gamesAvailable;
+
+        public bool GamesAvailable
+        {
+            get => _gamesAvailable;
+            set
+            {
+                _gamesAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _noGamesAvailable;
+
+        public bool NoGamesAvailable
+        {
+            get => _noGamesAvailable;
+            set
+            {
+                _noGamesAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 
         public ObservableCollection<BaseGameHeader> GameHeaders
@@ -46,6 +70,9 @@ namespace MODEXngine.ViewModels
         public GameSelectionViewModel()
         {
             GameHeaders = new ObservableCollection<BaseGameHeader>(App.GameHeaders.OrderBy(a => a.GameName));
+
+            GamesAvailable = GameHeaders.Any();
+            NoGamesAvailable = !GameHeaders.Any();
 
             var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == App.AppSettings.PreviousGame);
 

@@ -126,6 +126,9 @@
   <data name="GameSelection_LaunchGame" xml:space="preserve">
     <value>Launch Game</value>
   </data>
+  <data name="GameSelection_NoGamesAvailable" xml:space="preserve">
+    <value>No Games Available</value>
+  </data>
   <data name="GameSelection_Title" xml:space="preserve">
     <value>Games</value>
   </data>

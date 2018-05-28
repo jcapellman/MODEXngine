@@ -2,40 +2,51 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MODEXngine.Views.GameSelectionView"
-             xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
+    xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
     xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
-             xmlns:controls="clr-namespace:MODEXngine.Controls"
-             Style="{StaticResource PageStyle}"
+    xmlns:controls="clr-namespace:MODEXngine.Controls"    
+    Style="{StaticResource PageStyle}"
     Title="{tl:Translate GameSelection_Title}">
-    <ContentPage.Content>
-        <Grid Padding="20,20,20,20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/GameSelection.xaml"/>
+    </ContentPage.Resources>
 
-            <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid Padding="20,20,20,20" IsVisible="{Binding GamesAvailable}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_LabelGame}" />
-                <!-- Commented out until WPF Image Support is more functional -->
-                <!--  <ListView Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <controls:GameCarouselItem GameName="{Binding GameName}" ImageSrc="{Binding Image}" />
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView> -->
+                <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <Picker Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}" ItemDisplayBinding="{Binding GameName}" />
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_LabelGame}" />
+                    <!-- Commented out until WPF Image Support is more functional -->
+                    <!--  <ListView Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <controls:GameCarouselItem GameName="{Binding GameName}" ImageSrc="{Binding Image}" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView> -->
+
+                    <Picker Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}" ItemDisplayBinding="{Binding GameName}" />
+                </Grid>
+
+                <Button Grid.Row="1" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
             </Grid>
 
-            <Button Grid.Row="1" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
+            <Grid IsVisible="{Binding NoGamesAvailable}">
+                <Label Text="{tl:Translate GameSelection_NoGamesAvailable}" Style="{StaticResource NoGamesFound}" />
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

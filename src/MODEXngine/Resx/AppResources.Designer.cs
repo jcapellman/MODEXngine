@@ -88,6 +88,15 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Games Available.
+        /// </summary>
+        public static string GameSelection_NoGamesAvailable {
+            get {
+                return ResourceManager.GetString("GameSelection_NoGamesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Games.
         /// </summary>
         public static string GameSelection_Title {
