@@ -26,6 +26,12 @@ namespace MODEXngine.ViewModels
             set { Settings.IsFullScreen = value; OnPropertyChanged(); }
         }
 
+        public bool SoundEnabled
+        {
+            get => Settings.SoundEnabled;
+            set { Settings.SoundEnabled = value; OnPropertyChanged(); }
+        }
+
         private bool _noRenderersAvailable;
 
         public bool NoRenderersAvailable

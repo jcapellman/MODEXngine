@@ -147,6 +147,9 @@
   <data name="Settings_LabelResolution" xml:space="preserve">
     <value>Resolución</value>
   </data>
+  <data name="Settings_LabelSoundEnabled" xml:space="preserve">
+    <value>Sonido Activado</value>
+  </data>
   <data name="Settings_NoRenderersAvailable" xml:space="preserve">
     <value>No hay renderizadores disponibles</value>
   </data>

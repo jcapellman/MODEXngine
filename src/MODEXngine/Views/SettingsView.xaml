@@ -18,6 +18,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -51,7 +52,17 @@
                     <Switch Grid.Row="1" IsToggled="{Binding IsFullScreen}" />
                 </Grid>
 
-                <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
+                <Grid Grid.Row="3" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelSoundEnabled}" />
+                    <Switch Grid.Row="1" IsToggled="{Binding SoundEnabled}" />
+                </Grid>
+
+                <Button Grid.Row="4" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
             </Grid>
 
             <Grid IsVisible="{Binding NoRenderersAvailable}">

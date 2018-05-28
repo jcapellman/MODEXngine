@@ -151,6 +151,15 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sound Enabled.
+        /// </summary>
+        public static string Settings_LabelSoundEnabled {
+            get {
+                return ResourceManager.GetString("Settings_LabelSoundEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Renderers Available.
         /// </summary>
         public static string Settings_NoRenderersAvailable {

@@ -13,7 +13,8 @@ namespace MODEXngine.lib.Managers
             Resolution = new Resolution {Width = 640, Height = 480, RefreshRate = 60, Bpp = 32},
             Renderer = "OpenGL",
             PreviousGame = "Dark Forces",
-            IsFullScreen = true
+            IsFullScreen = true,
+            SoundEnabled = true
         };
 
         public static void SaveSettings(string fileName, Settings settings)

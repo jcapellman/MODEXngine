@@ -9,5 +9,7 @@
         public Resolution Resolution { get; set; }
 
         public bool IsFullScreen { get; set; }
+
+        public bool SoundEnabled { get; set; }
     }
 }
