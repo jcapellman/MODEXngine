@@ -4,14 +4,79 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MODEXngine.Views.AboutView"
-    Title="About">
+    xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
+    Style="{StaticResource PageStyle}"
+    Title="{tl:Translate About_Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/About.xaml"/>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="About"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+        <Grid Padding="20,20,20,20" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource AppNameLabel}" Text="MODEXngine" />
+                <Label Grid.Row="1" Style="{StaticResource ListHeaderLabel}" Text="Version 0.1 (Pre-Alpha 1)" />
+                <Label Grid.Row="2" Style="{StaticResource ListHeaderLabel}" Text="{tl:Translate About_CreatedBy}" />
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,20,0,0"  Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource ListHeaderLabel}" Text="{tl:Translate About_AvailableGames}" />
+
+                <ListView Grid.Row="1" ItemsSource="{Binding AvailableGames}" IsVisible="{Binding GamesAvailable}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Label Style="{StaticResource ListViewLabel}" Text="{Binding GameName}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label Grid.Row="1" Style="{StaticResource ListNoItemLabel}" Text="{tl:Translate About_NoAvailableGames}" IsVisible="{Binding NoGamesAvailable}" />
+            </Grid>
+
+            <Grid Grid.Row="2" Style="{StaticResource FormGroup}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource ListHeaderLabel}" Text="{tl:Translate About_AvailableRenderers}" />
+                
+                <ListView Grid.Row="1" ItemsSource="{Binding AvailableRenderers}" IsVisible="{Binding RenderersAvailable}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Label Style="{StaticResource ListViewLabel}" Text="{Binding Name}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label Grid.Row="1" Style="{StaticResource ListNoItemLabel}" Text="{tl:Translate About_NoAvailableRenderers}" IsVisible="{Binding NoRenderersAvailable}" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
 </base:BaseContentPage>

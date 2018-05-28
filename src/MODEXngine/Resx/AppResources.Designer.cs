@@ -61,6 +61,51 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available Games.
+        /// </summary>
+        public static string About_AvailableGames {
+            get {
+                return ResourceManager.GetString("About_AvailableGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available Renderers.
+        /// </summary>
+        public static string About_AvailableRenderers {
+            get {
+                return ResourceManager.GetString("About_AvailableRenderers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created by Jarred Capellman.
+        /// </summary>
+        public static string About_CreatedBy {
+            get {
+                return ResourceManager.GetString("About_CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Games Available.
+        /// </summary>
+        public static string About_NoAvailableGames {
+            get {
+                return ResourceManager.GetString("About_NoAvailableGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Renderers Available.
+        /// </summary>
+        public static string About_NoAvailableRenderers {
+            get {
+                return ResourceManager.GetString("About_NoAvailableRenderers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string About_Title {

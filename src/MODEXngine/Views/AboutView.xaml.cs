@@ -1,4 +1,5 @@
-﻿using MODEXngine.Views.Base;
+﻿using MODEXngine.ViewModels;
+using MODEXngine.Views.Base;
 
 namespace MODEXngine.Views
 {	
@@ -7,6 +8,8 @@ namespace MODEXngine.Views
 		public AboutView ()
 		{
 			InitializeComponent ();
+
+            SetBindingContext(new AboutViewModel());
 		}
 	}
 }
