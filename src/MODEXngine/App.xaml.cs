@@ -24,7 +24,7 @@ namespace MODEXngine
 
 	    public static List<BaseRenderer> Renderers;
 
-	    protected List<T> LoadAssemblies<T>(string mask)
+	    private List<T> LoadAssemblies<T>(string mask)
 	    {
 	        var assemblies = Directory.GetFiles(AppContext.BaseDirectory, mask);
 

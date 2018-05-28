@@ -36,6 +36,8 @@ namespace MODEXngine.ViewModels
             {
                 _selectedRenderer = value; OnPropertyChanged();
                 AvailableResolutions = new ObservableCollection<Resolution>(_selectedRenderer.SupportedResolutions());
+
+                SelectedResolution = AvailableResolutions.FirstOrDefault(a => a.Equals(Settings.Resolution)) ?? AvailableResolutions.FirstOrDefault();
             }
         }
 
