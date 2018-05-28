@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MODEXngine.Views.SettingsView"
-             xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
-             Style="{StaticResource PageStyle}"
-             Title="{tl:Translate Settings_Title}">
+<base:BaseContentPage
+            xmlns:base="clr-namespace:MODEXngine.Views.Base"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="MODEXngine.Views.SettingsView"
+            xmlns:tl="clr-namespace:MODEXngine.Extensions;assembly=MODEXngine"
+            Style="{StaticResource PageStyle}"
+            Title="{tl:Translate Settings_Title}">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Styles/Settings.xaml"/>
     </ContentPage.Resources>
@@ -51,4 +53,4 @@
             <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</base:BaseContentPage>

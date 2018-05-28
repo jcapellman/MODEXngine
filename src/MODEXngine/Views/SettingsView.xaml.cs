@@ -1,16 +1,15 @@
 ﻿using MODEXngine.ViewModels;
-
-using Xamarin.Forms;
+using MODEXngine.Views.Base;
 
 namespace MODEXngine.Views
 {	
-	public partial class SettingsView : ContentPage
-	{
+	public partial class SettingsView : BaseContentPage
+    {
 		public SettingsView ()
 		{
 			InitializeComponent ();
 
-		    BindingContext = new SettingsViewModel();
+            SetBindingContext(new SettingsViewModel());
 		}
 	}
 }

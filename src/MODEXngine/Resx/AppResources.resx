@@ -132,6 +132,12 @@
   <data name="GameSelection_Title" xml:space="preserve">
     <value>Games</value>
   </data>
+  <data name="Global_NoRenderersAvailable" xml:space="preserve">
+    <value>No Renderers Available</value>
+  </data>
+  <data name="Global_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Settings_LabelFullScreen" xml:space="preserve">
     <value>Fullscreen</value>
   </data>

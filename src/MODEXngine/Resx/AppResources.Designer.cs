@@ -106,6 +106,24 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Renderers Available.
+        /// </summary>
+        public static string Global_NoRenderersAvailable {
+            get {
+                return ResourceManager.GetString("Global_NoRenderersAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string Global_Ok {
+            get {
+                return ResourceManager.GetString("Global_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fullscreen.
         /// </summary>
         public static string Settings_LabelFullScreen {

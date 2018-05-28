@@ -1,16 +1,15 @@
 ﻿using MODEXngine.ViewModels;
-
-using Xamarin.Forms;
+using MODEXngine.Views.Base;
 
 namespace MODEXngine.Views
 {	
-	public partial class GameSelectionView : ContentPage
+	public partial class GameSelectionView : BaseContentPage
 	{
 		public GameSelectionView ()
 		{
 			InitializeComponent ();
 
-		    BindingContext = new GameSelectionViewModel();
+		    SetBindingContext(new GameSelectionViewModel());
 		}
 	}
 }
