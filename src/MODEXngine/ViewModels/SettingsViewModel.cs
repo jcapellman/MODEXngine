@@ -26,6 +26,22 @@ namespace MODEXngine.ViewModels
             set { Settings.IsFullScreen = value; OnPropertyChanged(); }
         }
 
+        private bool _noRenderersAvailable;
+
+        public bool NoRenderersAvailable
+        {
+            get => _noRenderersAvailable;
+            set { _noRenderersAvailable = value;OnPropertyChanged(); }
+        }
+
+        private bool _renderersAvailable;
+
+        public bool RenderersAvailable
+        {
+            set { _renderersAvailable = value; OnPropertyChanged(); }
+            get => _renderersAvailable;
+        }
+
         private BaseRenderer _selectedRenderer;
 
         public BaseRenderer SelectedRenderer
@@ -87,6 +103,14 @@ namespace MODEXngine.ViewModels
             Settings = App.AppSettings;
 
             Renderers = new ObservableCollection<BaseRenderer>(App.Renderers.OrderBy(a => a.Name));
+
+            RenderersAvailable = Renderers.Any();
+            NoRenderersAvailable = !Renderers.Any();
+
+            if (NoRenderersAvailable)
+            {
+                return;
+            }
 
             var selectedRenderer = Renderers.FirstOrDefault(a => a.Name == Settings.Renderer);
 

@@ -12,45 +12,51 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Padding="20,20,20,20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+        <Grid>
+            <Grid Padding="20,20,20,20" IsVisible="{Binding RenderersAvailable}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelRenderer}" />
-                <Picker Grid.Row="1" ItemsSource="{Binding Renderers}" SelectedItem="{Binding SelectedRenderer}" ItemDisplayBinding ="{Binding Name}" />
+                <Grid Grid.Row="0" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelRenderer}" />
+                    <Picker Grid.Row="1" ItemsSource="{Binding Renderers}" SelectedItem="{Binding SelectedRenderer}" ItemDisplayBinding ="{Binding Name}" />
+                </Grid>
+
+                <Grid Grid.Row="1" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelResolution}" />
+                    <Picker Grid.Row="1" ItemsSource="{Binding AvailableResolutions}" SelectedItem="{Binding SelectedResolution}" ItemDisplayBinding="{Binding DisplayString}" />
+                </Grid>
+
+                <Grid Grid.Row="2" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelFullScreen}" />
+                    <Switch Grid.Row="1" IsToggled="{Binding IsFullScreen}" />
+                </Grid>
+
+                <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
             </Grid>
 
-            <Grid Grid.Row="1" Style="{StaticResource FormGroup}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelResolution}" />
-                <Picker Grid.Row="1" ItemsSource="{Binding AvailableResolutions}" SelectedItem="{Binding SelectedResolution}" ItemDisplayBinding="{Binding DisplayString}" />
+            <Grid IsVisible="{Binding NoRenderersAvailable}">
+                <Label Text="{tl:Translate Settings_NoRenderersAvailable}" Style="{StaticResource NoRenderersFound}" />
             </Grid>
-
-            <Grid Grid.Row="2" Style="{StaticResource FormGroup}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate Settings_LabelFullScreen}" />
-                <Switch Grid.Row="1" IsToggled="{Binding IsFullScreen}" />
-            </Grid>
-
-            <Button Grid.Row="3" VerticalOptions="End" Command="{Binding SaveSettingsCommand}" Text="{tl:Translate Settings_Save}" />
         </Grid>
     </ContentPage.Content>
 </base:BaseContentPage>

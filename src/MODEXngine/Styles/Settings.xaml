@@ -3,5 +3,10 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:converters="clr-namespace:ConferenceVision.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    
+    <Style TargetType="Label" x:Key="NoRenderersFound">
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+        <Setter Property="FontSize" Value="24" />
+    </Style>
 </ResourceDictionary>

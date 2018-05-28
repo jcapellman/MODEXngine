@@ -2,6 +2,7 @@
 using System.Linq;
 
 using MODEXngine.lib;
+using MODEXngine.Resx;
 using MODEXngine.ViewModels.Base;
 
 using Xamarin.Forms;
@@ -57,7 +58,7 @@ namespace MODEXngine.ViewModels
 
             if (selectedRenderer == null)
             {
-                OnGUIMessage($"{App.AppSettings.Renderer} was not found");
+                OnGUIMessage($"{App.AppSettings.Renderer} {AppResources.GameSelection_RendererNotFound}");
 
                 return;
             }

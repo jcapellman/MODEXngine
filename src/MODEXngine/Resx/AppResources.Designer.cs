@@ -97,20 +97,20 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renderer was not found, please check your install.
+        /// </summary>
+        public static string GameSelection_RendererNotFound {
+            get {
+                return ResourceManager.GetString("GameSelection_RendererNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Games.
         /// </summary>
         public static string GameSelection_Title {
             get {
                 return ResourceManager.GetString("GameSelection_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No Renderers Available.
-        /// </summary>
-        public static string Global_NoRenderersAvailable {
-            get {
-                return ResourceManager.GetString("Global_NoRenderersAvailable", resourceCulture);
             }
         }
         
@@ -147,6 +147,15 @@ namespace MODEXngine.Resx {
         public static string Settings_LabelResolution {
             get {
                 return ResourceManager.GetString("Settings_LabelResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Renderers Available.
+        /// </summary>
+        public static string Settings_NoRenderersAvailable {
+            get {
+                return ResourceManager.GetString("Settings_NoRenderersAvailable", resourceCulture);
             }
         }
         

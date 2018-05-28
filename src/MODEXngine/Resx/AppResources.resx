@@ -129,11 +129,11 @@
   <data name="GameSelection_NoGamesAvailable" xml:space="preserve">
     <value>No Games Available</value>
   </data>
+  <data name="GameSelection_RendererNotFound" xml:space="preserve">
+    <value>Renderer was not found, please check your install</value>
+  </data>
   <data name="GameSelection_Title" xml:space="preserve">
     <value>Games</value>
-  </data>
-  <data name="Global_NoRenderersAvailable" xml:space="preserve">
-    <value>No Renderers Available</value>
   </data>
   <data name="Global_Ok" xml:space="preserve">
     <value>OK</value>
@@ -146,6 +146,9 @@
   </data>
   <data name="Settings_LabelResolution" xml:space="preserve">
     <value>Resolution</value>
+  </data>
+  <data name="Settings_NoRenderersAvailable" xml:space="preserve">
+    <value>No Renderers Available</value>
   </data>
   <data name="Settings_Save" xml:space="preserve">
     <value>Save</value>
