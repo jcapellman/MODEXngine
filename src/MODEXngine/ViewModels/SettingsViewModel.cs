@@ -32,20 +32,14 @@ namespace MODEXngine.ViewModels
             set { Settings.SoundEnabled = value; OnPropertyChanged(); }
         }
 
-        private bool _noRenderersAvailable;
-
         public bool NoRenderersAvailable
         {
-            get => _noRenderersAvailable;
-            set { _noRenderersAvailable = value;OnPropertyChanged(); }
+            get => !RenderersAvailable;
         }
-
-        private bool _renderersAvailable;
-
+        
         public bool RenderersAvailable
         {
-            set { _renderersAvailable = value; OnPropertyChanged(); }
-            get => _renderersAvailable;
+            get => Renderers.Any();
         }
 
         private BaseRenderer _selectedRenderer;
@@ -68,7 +62,10 @@ namespace MODEXngine.ViewModels
         public ObservableCollection<BaseRenderer> Renderers
         {
             get => _renderers;
-            set { _renderers = value; OnPropertyChanged(); }
+            set {
+                _renderers = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<Resolution> _availableResolutions;
@@ -109,11 +106,8 @@ namespace MODEXngine.ViewModels
             Settings = App.AppSettings;
 
             Renderers = new ObservableCollection<BaseRenderer>(App.Renderers.OrderBy(a => a.Name));
-
-            RenderersAvailable = Renderers.Any();
-            NoRenderersAvailable = !Renderers.Any();
-
-            if (NoRenderersAvailable)
+            
+            if (!Renderers.Any())
             {
                 return;
             }

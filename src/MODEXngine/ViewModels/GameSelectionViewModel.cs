@@ -11,28 +11,14 @@ namespace MODEXngine.ViewModels
 {
     public class GameSelectionViewModel : BaseViewModel
     {
-        private bool _gamesAvailable;
-
         public bool GamesAvailable
         {
-            get => _gamesAvailable;
-            set
-            {
-                _gamesAvailable = value;
-                OnPropertyChanged();
-            }
+            get => GameHeaders.Any();
         }
-
-        private bool _noGamesAvailable;
-
+        
         public bool NoGamesAvailable
         {
-            get => _noGamesAvailable;
-            set
-            {
-                _noGamesAvailable = value;
-                OnPropertyChanged();
-            }
+            get => !GamesAvailable;
         }
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
@@ -40,7 +26,10 @@ namespace MODEXngine.ViewModels
         public ObservableCollection<BaseGameHeader> GameHeaders
         {
             get => _gameHeaders;
-            set { _gameHeaders = value; OnPropertyChanged(); }
+            set {
+                _gameHeaders = value;
+                OnPropertyChanged();
+            }
         }
 
         private BaseGameHeader _selectedGameHeader;
@@ -71,10 +60,7 @@ namespace MODEXngine.ViewModels
         public GameSelectionViewModel()
         {
             GameHeaders = new ObservableCollection<BaseGameHeader>(App.GameHeaders.OrderBy(a => a.GameName));
-
-            GamesAvailable = GameHeaders.Any();
-            NoGamesAvailable = !GameHeaders.Any();
-
+            
             var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == App.AppSettings.PreviousGame);
 
             SelectedGameHeader = selectedGame ?? GameHeaders.FirstOrDefault();

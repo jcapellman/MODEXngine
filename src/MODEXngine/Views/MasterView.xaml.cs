@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
-using MODEXngine.lib.Common;
+
 using MODEXngine.Models;
-using MODEXngine.Resx;
+
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MODEXngine.Views
 {    
@@ -13,20 +11,16 @@ namespace MODEXngine.Views
         public MasterView()
         {
             InitializeComponent();
-
-            if (!App.Renderers.Any())
-            {
-                
-            }
-
+            
             menu.ListView.ItemSelected += ListView_ItemSelected;
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MasterViewMenuItem;
-            if (item == null)
+            if (!(e.SelectedItem is MasterViewMenuItem item))
+            {
                 return;
+            }
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
