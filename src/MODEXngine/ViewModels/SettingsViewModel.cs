@@ -32,15 +32,9 @@ namespace MODEXngine.ViewModels
             set { Settings.SoundEnabled = value; OnPropertyChanged(); }
         }
 
-        public bool NoRenderersAvailable
-        {
-            get => !RenderersAvailable;
-        }
-        
-        public bool RenderersAvailable
-        {
-            get => Renderers.Any();
-        }
+        public bool NoRenderersAvailable => !RenderersAvailable;
+
+        public bool RenderersAvailable => Renderers.Any();
 
         private BaseRenderer _selectedRenderer;
 

@@ -19,6 +19,7 @@
             <Grid Padding="20,20,20,20" IsVisible="{Binding GamesAvailable}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -43,7 +44,18 @@
                     <Picker Grid.Row="1" ItemsSource="{Binding GameHeaders}" SelectedItem="{Binding SelectedGameHeader}" ItemDisplayBinding="{Binding GameName}" />
                 </Grid>
 
-                <Button Grid.Row="1" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
+                <Grid Grid.Row="1" Style="{StaticResource FormGroup}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+
+                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_GameDirectoryPath}" />
+                    <Entry Grid.Row="1" Text="{Binding SelectedGamePath, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                </Grid>
+
+                <Button Grid.Row="2" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
             </Grid>
 
             <Grid IsVisible="{Binding NoGamesAvailable}">

@@ -11,15 +11,9 @@ namespace MODEXngine.ViewModels
 {
     public class GameSelectionViewModel : BaseViewModel
     {
-        public bool GamesAvailable
-        {
-            get => GameHeaders.Any();
-        }
-        
-        public bool NoGamesAvailable
-        {
-            get => !GamesAvailable;
-        }
+        public bool GamesAvailable => GameHeaders.Any();
+
+        public bool NoGamesAvailable => !GamesAvailable;
 
         private ObservableCollection<BaseGameHeader> _gameHeaders;
 

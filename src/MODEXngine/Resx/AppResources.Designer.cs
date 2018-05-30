@@ -115,6 +115,15 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Data Directory Path.
+        /// </summary>
+        public static string GameSelection_GameDirectoryPath {
+            get {
+                return ResourceManager.GetString("GameSelection_GameDirectoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game.
         /// </summary>
         public static string GameSelection_LabelGame {

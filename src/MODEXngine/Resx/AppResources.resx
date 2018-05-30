@@ -135,6 +135,9 @@
   <data name="About_Title" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="GameSelection_GameDirectoryPath" xml:space="preserve">
+    <value>Game Data Directory Path</value>
+  </data>
   <data name="GameSelection_LabelGame" xml:space="preserve">
     <value>Game</value>
   </data>
