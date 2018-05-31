@@ -52,10 +52,10 @@
 
 
                     <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_GameDirectoryPath}" />
-                    <Entry Grid.Row="1" Text="{Binding SelectedGamePath, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                    <Entry Grid.Row="1" Text="{Binding LaunchGamePath, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
                 </Grid>
 
-                <Button Grid.Row="2" Text="{tl:Translate GameSelection_LaunchGame}" VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
+                <Button Grid.Row="2" Text="{tl:Translate GameSelection_LaunchGame}" IsEnabled="{Binding LaunchButtonEnabled, Mode=TwoWay}"  VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
             </Grid>
 
             <Grid IsVisible="{Binding NoGamesAvailable}">

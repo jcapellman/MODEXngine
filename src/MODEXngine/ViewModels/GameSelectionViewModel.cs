@@ -11,6 +11,32 @@ namespace MODEXngine.ViewModels
 {
     public class GameSelectionViewModel : BaseViewModel
     {
+        private string _launchGamePath;
+
+        public string LaunchGamePath
+        {
+            get => _launchGamePath;
+            set
+            {
+                _launchGamePath = value;
+                OnPropertyChanged();
+
+                LaunchButtonEnabled = !string.IsNullOrEmpty(value);
+            }
+        }
+
+        private bool _launchButtonEnabled;
+
+        public bool LaunchButtonEnabled
+        {
+            get => _launchButtonEnabled;
+            set
+            {
+                _launchButtonEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool GamesAvailable => GameHeaders.Any();
 
         public bool NoGamesAvailable => !GamesAvailable;
@@ -58,6 +84,8 @@ namespace MODEXngine.ViewModels
             var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == App.AppSettings.PreviousGame);
 
             SelectedGameHeader = selectedGame ?? GameHeaders.FirstOrDefault();
+
+            LaunchButtonEnabled = false;
         }
     }
 }
