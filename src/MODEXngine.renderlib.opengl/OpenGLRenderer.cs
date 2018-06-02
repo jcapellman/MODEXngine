@@ -1,21 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using MODEXngine.lib;
+using MODEXngine.lib.Base;
 using MODEXngine.lib.CommonObjects;
+using MODEXngine.renderlib.opengl.Renderables.Base;
+
 using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL4;
+using OpenTK.Graphics.OpenGL;
 
 namespace MODEXngine.renderlib.opengl
 {
     public class OpenGLRenderer : BaseRenderer
     {
+        private List<BaseOpenGLRenderable> _renderables = new List<BaseOpenGLRenderable>();
+
         private OpenTK.GameWindow gWindow;
         
         private void GWindow_RenderFrame(object sender, OpenTK.FrameEventArgs e)
         {
             GL.ClearColor(1, 0, 0, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+
+            foreach (var renderable in _renderables)
+            {
+                renderable.Render();
+            }
 
             gWindow.SwapBuffers();
         }
@@ -31,6 +42,7 @@ namespace MODEXngine.renderlib.opengl
 
             gWindow.RenderFrame += GWindow_RenderFrame;
             gWindow.Closed += GWindow_Closed;
+
             if (Settings.IsFullScreen)
             {
                 gWindow.WindowState = WindowState.Fullscreen;

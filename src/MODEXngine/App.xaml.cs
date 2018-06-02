@@ -6,6 +6,7 @@ using System.Reflection;
 
 using MODEXngine.Interfaces;
 using MODEXngine.lib;
+using MODEXngine.lib.Base;
 using MODEXngine.lib.Common;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Managers;

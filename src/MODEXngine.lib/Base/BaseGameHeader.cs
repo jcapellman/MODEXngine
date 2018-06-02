@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MODEXngine.lib
+namespace MODEXngine.lib.Base
 {
     public abstract class BaseGameHeader
     {

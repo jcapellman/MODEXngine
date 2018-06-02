@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using MODEXngine.lib.CommonObjects;
 
-namespace MODEXngine.lib
+namespace MODEXngine.lib.Base
 {
     public abstract class BaseRenderer
     {

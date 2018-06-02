@@ -2,6 +2,7 @@
 using System.Linq;
 
 using MODEXngine.lib;
+using MODEXngine.lib.Base;
 using MODEXngine.Resx;
 using MODEXngine.ViewModels.Base;
 

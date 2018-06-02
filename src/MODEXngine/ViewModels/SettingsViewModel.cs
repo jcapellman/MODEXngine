@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 
 using MODEXngine.lib;
+using MODEXngine.lib.Base;
 using MODEXngine.lib.Common;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Managers;
