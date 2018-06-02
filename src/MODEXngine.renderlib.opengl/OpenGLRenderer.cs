@@ -4,6 +4,7 @@ using System.Linq;
 using MODEXngine.lib;
 using MODEXngine.lib.Base;
 using MODEXngine.lib.CommonObjects;
+using MODEXngine.renderlib.opengl.Renderables;
 using MODEXngine.renderlib.opengl.Renderables.Base;
 
 using OpenTK;
@@ -22,6 +23,7 @@ namespace MODEXngine.renderlib.opengl
         {
             GL.ClearColor(1, 0, 0, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Enable(EnableCap.Texture2D);
 
             foreach (var renderable in _renderables)
             {
@@ -48,7 +50,11 @@ namespace MODEXngine.renderlib.opengl
                 gWindow.WindowState = WindowState.Fullscreen;
             }
 
+            _renderables.Add(new Wall("wall.png"));
+
             gWindow.Run(1.0 / 60.0);
+
+         
         }
 
         private void GWindow_Closed(object sender, System.EventArgs e)
