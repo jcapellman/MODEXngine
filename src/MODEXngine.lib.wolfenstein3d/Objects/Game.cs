@@ -12,6 +12,8 @@ namespace MODEXngine.lib.wolfenstein3d.Objects
 
         public Episode Episode { get; set; }
 
+        public int LevelNumber { get; set; }
+
         public Game() { }
 
         public Game NewGame(Difficulty difficulty, Episode episode)
@@ -20,6 +22,7 @@ namespace MODEXngine.lib.wolfenstein3d.Objects
             Ammo = Common.Constants.NEWGAME_AMMO;
             Health = Common.Constants.NEWGAME_HEALTH;
             Episode = episode;
+            LevelNumber = 1;
 
             return this;
         }
