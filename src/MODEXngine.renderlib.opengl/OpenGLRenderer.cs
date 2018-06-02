@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
-using MODEXngine.lib;
 using MODEXngine.lib.Base;
 using MODEXngine.lib.CommonObjects;
-using MODEXngine.renderlib.opengl.Renderables;
+using MODEXngine.lib.Renderer.Base;
 using MODEXngine.renderlib.opengl.Renderables.Base;
 
 using OpenTK;
@@ -15,17 +16,14 @@ namespace MODEXngine.renderlib.opengl
 {
     public class OpenGLRenderer : BaseRenderer
     {
-        private List<BaseOpenGLRenderable> _renderables = new List<BaseOpenGLRenderable>();
-
         private OpenTK.GameWindow gWindow;
         
         private void GWindow_RenderFrame(object sender, OpenTK.FrameEventArgs e)
         {
             GL.ClearColor(1, 0, 0, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Enable(EnableCap.Texture2D);
-
-            foreach (var renderable in _renderables)
+            
+            foreach (var renderable in renderables)
             {
                 renderable.Render();
             }
@@ -35,11 +33,11 @@ namespace MODEXngine.renderlib.opengl
 
         public override string Name => "OpenGL";
 
-        public override void Render()
+        public override void Initialize()
         {
             gWindow = new OpenTK.GameWindow(Settings.Resolution.Width, Settings.Resolution.Height, GraphicsMode.Default)
             {
-                Title = GameHeader.GameName
+                Title = GameTitle
             };
 
             gWindow.RenderFrame += GWindow_RenderFrame;
@@ -50,11 +48,16 @@ namespace MODEXngine.renderlib.opengl
                 gWindow.WindowState = WindowState.Fullscreen;
             }
 
-            _renderables.Add(new Wall("wall.png"));
+            rendererImplementations = Assembly.GetAssembly(typeof(OpenGLRenderer)).GetTypes()
+                .Where(a => !a.IsAbstract && a.BaseType == typeof(BaseOpenGLRenderable))
+                .Select(a => (BaseRenderable) Activator.CreateInstance(a)).ToList();
 
+            
+        }
+
+        public override void Start()
+        {
             gWindow.Run(1.0 / 60.0);
-
-         
         }
 
         private void GWindow_Closed(object sender, System.EventArgs e)

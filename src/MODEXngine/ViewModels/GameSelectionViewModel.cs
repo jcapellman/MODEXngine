@@ -73,9 +73,11 @@ namespace MODEXngine.ViewModels
                 return;
             }
 
-            selectedRenderer.SetGameLaunchItems(SelectedGameHeader, App.AppSettings);
+            selectedRenderer.SetGameLaunchItems(SelectedGameHeader.GameName, App.AppSettings);
 
-            selectedRenderer.Render();
+            SelectedGameHeader.Initialize(selectedRenderer, App.AppSettings);
+
+            SelectedGameHeader.Start();
         });
 
         public GameSelectionViewModel()

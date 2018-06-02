@@ -11,7 +11,8 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
     // ReSharper disable once InconsistentNaming
     public abstract class BaseOpenGLRenderable : BaseRenderable
     {
-        protected readonly int TextureId;
+        protected int TextureId;
+        protected int DisplayListId;
 
         private static int LoadTexture(string fileName)
         {
@@ -37,8 +38,12 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             return textureId;
         }
 
-        protected BaseOpenGLRenderable(string textureFileName = null)
+        public override void Render()
         {
+            GL.CallList(DisplayListId);
+        }
+
+        protected void Initialize(string textureFileName = null) { 
             if (string.IsNullOrEmpty(textureFileName) || !File.Exists(textureFileName))
             {
                 return;
