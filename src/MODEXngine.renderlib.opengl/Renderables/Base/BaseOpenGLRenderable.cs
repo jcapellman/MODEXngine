@@ -26,10 +26,9 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             var data = texture.LockBits(new Rectangle(0, 0, texture.Width, texture.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, texture.Width, texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
             texture.UnlockBits(data);
-
-            
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Clamp);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Clamp);
+   
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
             // TODO Make the Filtering configurable
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
@@ -43,13 +42,19 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             GL.CallList(DisplayListId);
         }
 
-        protected void Initialize(string textureFileName = null) { 
-            if (string.IsNullOrEmpty(textureFileName) || !File.Exists(textureFileName))
+        protected void Initialize(BaseRenderable renderable)
+        {
+            this.Width = renderable.Width;
+            this.Height = renderable.Height;
+            this.OriginX = renderable.OriginX;
+            this.OriginY = renderable.OriginY;
+
+            if (string.IsNullOrEmpty(renderable.TextureFileName) || !File.Exists(renderable.TextureFileName))
             {
                 return;
             }
 
-            TextureId = LoadTexture(textureFileName);
+            TextureId = LoadTexture(renderable.TextureFileName);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Renderer.Base;
 
@@ -32,6 +32,13 @@ namespace MODEXngine.lib.Base
         public abstract void Start();
 
         public abstract List<Resolution> SupportedResolutions();
+
+        public void InitializeImplementations(Type renderer, Type renderableType)
+        {
+            rendererImplementations = Assembly.GetAssembly(renderer).GetTypes()
+                .Where(a => !a.IsAbstract && a.BaseType == renderableType)
+                .Select(a => (BaseRenderable)Activator.CreateInstance(a)).ToList();
+        }
 
         protected List<BaseRenderable> rendererImplementations = new List<BaseRenderable>();
 
