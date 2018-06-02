@@ -6,9 +6,9 @@ using OpenTK.Graphics.OpenGL;
 
 namespace MODEXngine.renderlib.opengl.Renderables
 {
-    public class WallOpenGL : BaseOpenGLRenderable
+    public class FloorOpenGL : BaseOpenGLRenderable
     {
-        public override Type BaseObject => typeof(lib.Renderer.Wall);
+        public override Type BaseObject => typeof(lib.Renderer.Floor);
 
         public override void Initialize<T>(T item)
         {
@@ -22,16 +22,16 @@ namespace MODEXngine.renderlib.opengl.Renderables
 
                 GL.Begin(PrimitiveType.Quads);
                     GL.TexCoord2(0, 0);
-                    GL.Vertex3(OriginX, OriginY, 0);
+                    GL.Vertex3(OriginX, OriginY, OriginZ);
 
                     GL.TexCoord2(1, 0);
-                    GL.Vertex3(OriginX + Width, OriginY, 0);
+                    GL.Vertex3(OriginX + Width, OriginY, OriginZ);
 
                     GL.TexCoord2(1, 1);
-                    GL.Vertex3(OriginX + Width, OriginY + Height, 0);
+                    GL.Vertex3(OriginX + Width, OriginY, OriginZ + Height);
 
                     GL.TexCoord2(0, 1);
-                    GL.Vertex3(OriginX, OriginY + Height, 0);
+                    GL.Vertex3(OriginX, OriginY, OriginZ + Height);
                 GL.End();
 
                 GL.Disable(EnableCap.Texture2D);

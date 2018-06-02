@@ -8,6 +8,8 @@ namespace MODEXngine.lib.Renderer.Base
 
         public string TextureFileName { get; set; }
 
+        public bool TextureRepeated { get; set; }
+
         public int Width { get; set; }
 
         public int Height { get; set; }
@@ -15,6 +17,8 @@ namespace MODEXngine.lib.Renderer.Base
         public int OriginX { get; set; }
 
         public int OriginY { get; set; }
+
+        public int OriginZ { get; set; }
 
         public abstract void Render();
 
