@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-
+using MODEXngine.Interfaces;
 using MODEXngine.lib;
 using MODEXngine.lib.Base;
+using MODEXngine.lib.Common;
+using MODEXngine.lib.Managers;
 using MODEXngine.Resx;
 using MODEXngine.ViewModels.Base;
 
@@ -59,7 +61,12 @@ namespace MODEXngine.ViewModels
         {
             get => _selectedGameHeader;
 
-            set { _selectedGameHeader = value; OnPropertyChanged(); }
+            set
+            {
+                _selectedGameHeader = value; OnPropertyChanged();
+
+                LaunchGamePath = App.AppSettings.GetGameSetting(SelectedGameHeader.GameName, Constants.SETTINGS_GAME_DATA_PATH);
+            }
         }
 
         public Command LaunchGameCommand => new Command(() =>
@@ -78,6 +85,21 @@ namespace MODEXngine.ViewModels
             SelectedGameHeader.Initialize(selectedRenderer, App.AppSettings);
 
             SelectedGameHeader.Start();
+        });
+
+        public Command SelectPathCommand => new Command(() =>
+        {
+            var result = DependencyService.Get<IFolderSelector>().SelectFolder();
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return;
+            }
+
+            LaunchGamePath = result;
+
+            App.AppSettings.SetGameSetting(SelectedGameHeader.GameName, Constants.SETTINGS_GAME_DATA_PATH, LaunchGamePath);
+            SettingsManager.SaveSettings(Constants.FILE_NAME_SETTINGS, App.AppSettings);
         });
 
         public GameSelectionViewModel()

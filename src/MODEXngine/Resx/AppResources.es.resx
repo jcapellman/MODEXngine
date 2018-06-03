@@ -136,7 +136,7 @@
     <value>Sobre</value>
   </data>
   <data name="GameSelection_GameDirectoryPath" xml:space="preserve">
-    <value>Ruta del directorio de datos del juego</value>
+    <value>Navega</value>
   </data>
   <data name="GameSelection_LabelGame" xml:space="preserve">
     <value>Juego</value>

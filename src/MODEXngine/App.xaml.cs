@@ -46,7 +46,7 @@ namespace MODEXngine
 	        DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
-	    private static void InitializeAssemblies()
+        private static void InitializeAssemblies()
 	    {
 	        AppSettings = SettingsManager.LoadSettings(Constants.FILE_NAME_SETTINGS);
 

@@ -160,6 +160,15 @@ namespace MODEXngine.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string GameSelection_SelectGameDataPath {
+            get {
+                return ResourceManager.GetString("GameSelection_SelectGameDataPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Games.
         /// </summary>
         public static string GameSelection_Title {

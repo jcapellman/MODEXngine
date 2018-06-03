@@ -45,14 +45,20 @@
                 </Grid>
 
                 <Grid Grid.Row="1" Style="{StaticResource FormGroup}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-
-                    <Label Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_GameDirectoryPath}" />
-                    <Entry Grid.Row="1" Text="{Binding LaunchGamePath, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                    <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource FieldLabel}" Text="{tl:Translate GameSelection_GameDirectoryPath}" />
+                    <Entry Grid.Column="0" Grid.Row="1" Text="{Binding LaunchGamePath, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                    
+                    <Button Grid.Column="1" Grid.Row="1" Text="{tl:Translate GameSelection_SelectGameDataPath}" Command="{Binding SelectPathCommand}" />
                 </Grid>
 
                 <Button Grid.Row="2" Text="{tl:Translate GameSelection_LaunchGame}" IsEnabled="{Binding LaunchButtonEnabled, Mode=TwoWay}"  VerticalOptions="End" Command="{Binding LaunchGameCommand}" />
