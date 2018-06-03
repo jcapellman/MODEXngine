@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Windows.Input;
 
-using MODEXngine.lib;
 using MODEXngine.lib.Base;
 using MODEXngine.lib.Common;
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Managers;
 using MODEXngine.ViewModels.Base;
+
+using NLog;
 
 using Xamarin.Forms;
 
@@ -15,10 +16,23 @@ namespace MODEXngine.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         public Resolution SelectedResolution
         {
             get => Settings.Resolution;
-            set { Settings.Resolution = value; OnPropertyChanged(); }
+            set
+            {
+                if (Settings == null)
+                {
+                    Log.Error("Settings was null upon setting Resolution");
+
+                    return;
+                }
+
+                Settings.Resolution = value;
+                OnPropertyChanged();
+            }
         }
 
         public bool IsFullScreen
@@ -45,10 +59,19 @@ namespace MODEXngine.ViewModels
 
             set
             {
-                _selectedRenderer = value; OnPropertyChanged();
+                _selectedRenderer = value;
+                OnPropertyChanged();
+
+                if (value == null)
+                {
+                    Log.Error("Selected Renderer is null");
+
+                    return;
+                }
+
                 AvailableResolutions = new ObservableCollection<Resolution>(_selectedRenderer.SupportedResolutions());
 
-                SelectedResolution = AvailableResolutions.FirstOrDefault(a => a.Equals(Settings.Resolution)) ?? AvailableResolutions.FirstOrDefault();
+                SelectedResolution = AvailableResolutions.FirstOrDefault(a => a.Equals(Settings?.Resolution)) ?? AvailableResolutions.FirstOrDefault();
             }
         }
 
@@ -98,7 +121,20 @@ namespace MODEXngine.ViewModels
 
         public SettingsViewModel()
         {
+            if (App.AppSettings == null)
+            {
+                Log.Error("App.AppSettings is null");
+
+                return;
+            }
+
             Settings = App.AppSettings;
+
+            if (App.Renderers == null)
+            {
+                Log.Error("No Renderers found");
+                return;
+            }
 
             Renderers = new ObservableCollection<BaseRenderer>(App.Renderers.OrderBy(a => a.Name));
             
