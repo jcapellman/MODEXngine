@@ -3,6 +3,9 @@ using System.Drawing.Imaging;
 using System.IO;
 
 using MODEXngine.lib.Renderer.Base;
+using MODEXngine.lib.Renderer.Objects;
+
+using NLog;
 
 using OpenTK.Graphics.OpenGL;
 
@@ -11,6 +14,8 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
     // ReSharper disable once InconsistentNaming
     public abstract class BaseOpenGLRenderable : BaseRenderable
     {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         protected int TextureId;
         protected int DisplayListId;
 
@@ -23,8 +28,10 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             GL.Hint(HintTarget.PerspectiveCorrectionHint, HintMode.Nicest);
 
             GL.BindTexture(TextureTarget.Texture2D, textureId);
+
             var data = texture.LockBits(new Rectangle(0, 0, texture.Width, texture.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, texture.Width, texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, texture.Width, 
+                texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
             texture.UnlockBits(data);
 
             if (repeated)
@@ -52,22 +59,24 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             GL.CallList(DisplayListId);
         }
 
-        protected void Initialize(BaseRenderable renderable)
+        protected void Init(RenderableProperties properties)
         {
-            Width = renderable.Width;
-            Height = renderable.Height;
-            OriginX = renderable.OriginX;
-            OriginY = renderable.OriginY;
-            OriginZ = renderable.OriginZ;
-            TextureRepeated = renderable.TextureRepeated;
-            TextureFileName = renderable.TextureFileName;
-
-            if (string.IsNullOrEmpty(renderable.TextureFileName) || !File.Exists(renderable.TextureFileName))
+            Properties = properties;
+            
+            if (string.IsNullOrEmpty(Properties.TextureFileName))
             {
+                Log.Debug("Texture filename was not set");
                 return;
             }
 
-            TextureId = LoadTexture(renderable.TextureFileName, renderable.TextureRepeated);
+            if (!File.Exists(Properties.TextureFileName))
+            {
+                Log.Error($"Could not find {Properties.TextureFileName}");
+
+                return;
+            }
+
+            TextureId = LoadTexture(Properties.TextureFileName, Properties.TextureRepeated);
         }
     }
 }

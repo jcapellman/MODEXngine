@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using MODEXngine.lib.CommonObjects;
+using MODEXngine.lib.Enums;
 using MODEXngine.lib.Renderer.Base;
+using MODEXngine.lib.Renderer.Objects;
 
 namespace MODEXngine.lib.Base
 {
@@ -44,16 +47,16 @@ namespace MODEXngine.lib.Base
 
         protected List<BaseRenderable> renderables = new List<BaseRenderable>();
 
-        public void AddRenderable(BaseRenderable renderable)
+        public void AddRenderable(RenderableTypes renderableType, RenderableProperties properties)
         {
-            var implementation = rendererImplementations.FirstOrDefault(a => renderable.GetType() == a.BaseObject);
+            var implementation = rendererImplementations.FirstOrDefault(a => renderableType == a.RenderableType);
 
             if (implementation == null)
             {
                 return;
             }
             
-            implementation.Initialize(renderable);
+            implementation.Initialize(properties);
 
             renderables.Add(implementation);
         }

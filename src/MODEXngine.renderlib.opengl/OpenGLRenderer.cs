@@ -71,6 +71,8 @@ namespace MODEXngine.renderlib.opengl
                 renderable.Render();
             }
 
+            GL.Flush();
+
             gWindow.SwapBuffers();
         }
 
@@ -100,7 +102,7 @@ namespace MODEXngine.renderlib.opengl
             }
 
             GL.Enable(EnableCap.Texture2D);
-          //  GL.Enable(EnableCap.DepthTest);
+            GL.Enable(EnableCap.DepthTest);
 
             GL.ShadeModel(ShadingModel.Smooth);
             

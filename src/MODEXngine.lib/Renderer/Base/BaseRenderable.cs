@@ -1,27 +1,16 @@
-﻿using System;
+﻿using MODEXngine.lib.Enums;
+using MODEXngine.lib.Renderer.Objects;
 
 namespace MODEXngine.lib.Renderer.Base
 {
     public abstract class BaseRenderable
     {
-        public abstract Type BaseObject { get; }
+        public RenderableProperties Properties { get; set; }
 
-        public string TextureFileName { get; set; }
-
-        public bool TextureRepeated { get; set; }
-
-        public int Width { get; set; }
-
-        public int Height { get; set; }
-
-        public int OriginX { get; set; }
-
-        public int OriginY { get; set; }
-
-        public int OriginZ { get; set; }
-
+        public abstract RenderableTypes RenderableType { get; }
+        
         public abstract void Render();
 
-        public abstract void Initialize<T>(T item) where T : BaseRenderable;
+        public abstract void Initialize(RenderableProperties renderableProperties);
     }
 }

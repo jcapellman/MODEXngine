@@ -1,5 +1,6 @@
 ﻿using MODEXngine.lib.Base;
-using MODEXngine.lib.Renderer;
+using MODEXngine.lib.Enums;
+using MODEXngine.lib.Renderer.Objects;
 
 using Xamarin.Forms;
 
@@ -13,11 +14,12 @@ namespace MODEXngine.lib.wolfenstein3d
 
         public override void Start()
         {
-            renderer.AddRenderable(new Floor("floor.png", true, 2048, 2048, 0, 10, 0));
-            renderer.AddRenderable(new Floor("ceiling.png", true, 2048, 2048, 0, 128, 0));
+            renderer.AddRenderable(RenderableTypes.FLOOR, new RenderableProperties(2048, 2048, 0, 10, 0, "floor.png", true));
 
-            renderer.AddRenderable(new Wall("wall.png", 128, 128, 0, 0));
+            renderer.AddRenderable(RenderableTypes.CEILING, new RenderableProperties(2048, 2048, 0, 128, 0, "ceiling.png", true));
 
+            renderer.AddRenderable(RenderableTypes.WALL, new RenderableProperties(128, 128, 0, 0, 0, "wall.png", false));
+           
             renderer.Start();
         }
     }
