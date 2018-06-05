@@ -1,2 +1,2 @@
 language: csharp
-solution: MODEXngine.sln
+solution: src/MODEXngine.sln
