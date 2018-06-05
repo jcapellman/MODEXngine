@@ -1,12 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+
 using MODEXngine.Interfaces;
-using MODEXngine.lib;
 using MODEXngine.lib.Base;
 using MODEXngine.lib.Common;
 using MODEXngine.lib.Managers;
 using MODEXngine.Resx;
 using MODEXngine.ViewModels.Base;
+
+using NLog;
 
 using Xamarin.Forms;
 
@@ -14,6 +16,8 @@ namespace MODEXngine.ViewModels
 {
     public class GameSelectionViewModel : BaseViewModel
     {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         private string _launchGamePath;
 
         public string LaunchGamePath
@@ -63,7 +67,15 @@ namespace MODEXngine.ViewModels
 
             set
             {
-                _selectedGameHeader = value; OnPropertyChanged();
+                _selectedGameHeader = value;
+
+                OnPropertyChanged();
+
+                if (value == null)
+                {
+                    Log.Error("SelectedGameHeader was set to null");
+                    return;
+                }
 
                 LaunchGamePath = App.AppSettings.GetGameSetting(SelectedGameHeader.GameName, Constants.SETTINGS_GAME_DATA_PATH);
             }
@@ -99,18 +111,33 @@ namespace MODEXngine.ViewModels
             LaunchGamePath = result;
 
             App.AppSettings.SetGameSetting(SelectedGameHeader.GameName, Constants.SETTINGS_GAME_DATA_PATH, LaunchGamePath);
+
             SettingsManager.SaveSettings(Constants.FILE_NAME_SETTINGS, App.AppSettings);
         });
 
         public GameSelectionViewModel()
         {
+            LaunchButtonEnabled = false;
+
+            if (App.GameHeaders == null)
+            {
+                Log.Error("App.GameHeaders is null");
+
+                return;
+            }
+
             GameHeaders = new ObservableCollection<BaseGameHeader>(App.GameHeaders.OrderBy(a => a.GameName));
-            
+
+            if (!GameHeaders.Any())
+            {
+                Log.Error("GameHeaders is empty");
+
+                return;
+            }
+
             var selectedGame = GameHeaders.FirstOrDefault(a => a.GameName == App.AppSettings.PreviousGame);
 
             SelectedGameHeader = selectedGame ?? GameHeaders.FirstOrDefault();
-
-            LaunchButtonEnabled = false;
         }
     }
 }
