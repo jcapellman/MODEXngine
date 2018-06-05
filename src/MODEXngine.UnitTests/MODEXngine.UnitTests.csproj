@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Launcher\Launcher_AboutViewModel_Tests.cs" />
     <Compile Include="Launcher\Launcher_SettingsViewModel_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

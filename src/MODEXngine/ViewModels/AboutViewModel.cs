@@ -1,33 +1,24 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 
-using MODEXngine.lib;
 using MODEXngine.lib.Base;
 using MODEXngine.ViewModels.Base;
+
+using NLog;
 
 namespace MODEXngine.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public bool NoRenderersAvailable
-        {
-            get => !RenderersAvailable;
-        }
-        
-        public bool RenderersAvailable
-        {
-            get => AvailableRenderers.Any();
-        }
-        
-        public bool GamesAvailable
-        {
-            get => AvailableGames.Any();
-        }
-        
-        public bool NoGamesAvailable
-        {
-            get => !GamesAvailable;
-        }
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        public bool NoRenderersAvailable => !RenderersAvailable;
+
+        public bool RenderersAvailable => AvailableRenderers.Any();
+
+        public bool GamesAvailable => AvailableGames.Any();
+
+        public bool NoGamesAvailable => !GamesAvailable;
 
         private ObservableCollection<BaseRenderer> _availableRenderers;
 
@@ -53,8 +44,23 @@ namespace MODEXngine.ViewModels
 
         public AboutViewModel()
         {
-            AvailableRenderers = new ObservableCollection<BaseRenderer>(App.Renderers);
-            AvailableGames = new ObservableCollection<BaseGameHeader>(App.GameHeaders);
+            if (App.Renderers == null)
+            {
+                Log.Error("App.Renderers is null");
+            }
+            else
+            {
+                AvailableRenderers = new ObservableCollection<BaseRenderer>(App.Renderers);
+            }
+
+            if (App.GameHeaders == null)
+            {
+                Log.Error("App.GameHeaders is null");
+            }
+            else
+            {
+                AvailableGames = new ObservableCollection<BaseGameHeader>(App.GameHeaders);
+            }
         }
     }
 }
