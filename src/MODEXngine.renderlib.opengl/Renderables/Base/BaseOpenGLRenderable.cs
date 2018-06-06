@@ -19,8 +19,15 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
         protected int TextureId;
         protected int DisplayListId;
 
-        private static int LoadTexture(string fileName, bool repeated = false)
+        private static (int textureID, bool successfull) LoadTexture(string fileName, bool repeated = false)
         {
+            if (File.Exists(fileName))
+            {
+                Log.Error($"LoadTexture - {fileName} does not exist");
+
+                return (default(int), false);
+            }
+
             var textureId = GL.GenTexture();
 
             var texture = new Bitmap(fileName);
@@ -51,7 +58,7 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Linear);
 
-            return textureId;
+            return (textureId, true);
         }
 
         public override void Render()
@@ -68,15 +75,15 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
                 Log.Debug("Texture filename was not set");
                 return;
             }
+            
+            var (textureId, successfull) = LoadTexture(Properties.TextureFileName, Properties.TextureRepeated);
 
-            if (!File.Exists(Properties.TextureFileName))
+            if (!successfull)
             {
-                Log.Error($"Could not find {Properties.TextureFileName}");
-
                 return;
             }
 
-            TextureId = LoadTexture(Properties.TextureFileName, Properties.TextureRepeated);
+            TextureId = textureId;
         }
     }
 }
