@@ -5,6 +5,7 @@ using System.Reflection;
 
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Enums;
+using MODEXngine.lib.Managers;
 using MODEXngine.lib.Renderer.Base;
 using MODEXngine.lib.Renderer.Objects;
 
@@ -14,6 +15,13 @@ namespace MODEXngine.lib.Base
     {
         protected string GameTitle;
         protected Settings Settings;
+
+        public event EventHandler<(EventTypes, object)> EventOccurred;
+
+        protected void OnEventOccurred(EventTypes eventType, object payload = null)
+        {
+            EventOccurred?.Invoke(null, (eventType, payload));
+        }
 
         public event EventHandler WindowClosed;
 

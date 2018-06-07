@@ -4,6 +4,7 @@ using System.Linq;
 
 using MODEXngine.lib.Base;
 using MODEXngine.lib.CommonObjects;
+using MODEXngine.lib.Enums;
 using MODEXngine.renderlib.opengl.Renderables.Base;
 
 using OpenTK;
@@ -30,22 +31,23 @@ namespace MODEXngine.renderlib.opengl
         {
             keyboardState = Keyboard.GetState();
 
+            if (!keyboardState.IsAnyKeyDown)
+            {
+                return;
+            }
+            
             if (KeyPress(Key.W))
             {
-                this.xpos -= (float)Math.Sin(this.heading * Math.PI / 180.0) * 0.05f;
-                this.zpos -= (float)Math.Cos(this.heading * Math.PI / 180.0) * 0.05f;
+                OnEventOccurred(EventTypes.KEYBOARD_KEY_HIT, KeyboardInput.W);
             } else if (KeyPress(Key.S))
             {
-                this.xpos += (float)Math.Sin(this.heading * Math.PI / 180.0) * 0.05f;
-                this.zpos += (float)Math.Cos(this.heading * Math.PI / 180.0) * 0.05f;
+                OnEventOccurred(EventTypes.KEYBOARD_KEY_HIT, KeyboardInput.S);
             } else if (KeyPress(Key.A))
             {
-                this.heading += 1.0f;
-                this.yrot = this.heading;
+                OnEventOccurred(EventTypes.KEYBOARD_KEY_HIT, KeyboardInput.A);
             } else if (KeyPress(Key.D))
             {
-                this.heading -= 1.0f;
-                this.yrot = this.heading;
+                OnEventOccurred(EventTypes.KEYBOARD_KEY_HIT, KeyboardInput.D);
             }
         }
 
@@ -87,7 +89,7 @@ namespace MODEXngine.renderlib.opengl
 
         public override void Initialize()
         {
-            gWindow = new OpenTK.GameWindow(Settings.Resolution.Width, Settings.Resolution.Height, GraphicsMode.Default)
+            gWindow = new GameWindow(Settings.Resolution.Width, Settings.Resolution.Height, GraphicsMode.Default)
             {
                 Title = GameTitle
             };
@@ -95,7 +97,7 @@ namespace MODEXngine.renderlib.opengl
             gWindow.RenderFrame += GWindow_RenderFrame;
             gWindow.Closed += GWindow_Closed;
             gWindow.UpdateFrame += GWindow_UpdateFrame;
-
+            
             if (Settings.IsFullScreen)
             {
                 gWindow.WindowState = WindowState.Fullscreen;
@@ -105,7 +107,12 @@ namespace MODEXngine.renderlib.opengl
             GL.Enable(EnableCap.DepthTest);
 
             GL.ShadeModel(ShadingModel.Smooth);
-            
+
+            GL.ClearColor(0.0f, 0.0f, 0.0f, 0.5f);
+            GL.ClearDepth(1.0f);
+            GL.Enable(EnableCap.DepthTest);
+            GL.DepthFunc(DepthFunction.Less);
+
             GL.Hint(HintTarget.PerspectiveCorrectionHint, HintMode.Nicest);
 
             GL.Viewport(0, 0, Settings.Resolution.Width, Settings.Resolution.Height);
