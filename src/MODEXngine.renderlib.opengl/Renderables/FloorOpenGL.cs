@@ -1,5 +1,6 @@
 ﻿using MODEXngine.lib.Enums;
 using MODEXngine.lib.Renderer.Objects;
+using MODEXngine.renderlib.opengl.Collections;
 using MODEXngine.renderlib.opengl.Renderables.Base;
 
 using OpenTK.Graphics.OpenGL;
@@ -8,7 +9,9 @@ namespace MODEXngine.renderlib.opengl.Renderables
 {
     public class FloorOpenGL : BaseOpenGLRenderable
     {
+        public FloorOpenGL(IDisplayCollection renderingDisplayCollection) : base(renderingDisplayCollection) { }
         public override RenderableTypes RenderableType => RenderableTypes.FLOOR;
+
         public override void Initialize(RenderableProperties renderableProperties)
         {
             Init(renderableProperties);

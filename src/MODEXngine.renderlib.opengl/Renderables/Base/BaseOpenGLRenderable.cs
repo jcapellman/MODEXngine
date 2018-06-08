@@ -4,6 +4,7 @@ using System.IO;
 
 using MODEXngine.lib.Renderer.Base;
 using MODEXngine.lib.Renderer.Objects;
+using MODEXngine.renderlib.opengl.Collections;
 
 using NLog;
 
@@ -19,6 +20,13 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
         protected int TextureId;
         protected int DisplayListId;
 
+        protected IDisplayCollection RenderingCollectionMode;
+
+        protected BaseOpenGLRenderable(IDisplayCollection renderingCollectionMode)
+        {
+            RenderingCollectionMode = renderingCollectionMode;
+        }
+
         private static (int textureID, bool successfull) LoadTexture(string fileName, bool repeated = false)
         {
             if (File.Exists(fileName))
@@ -27,7 +35,7 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
 
                 return (default(int), false);
             }
-
+            
             var textureId = GL.GenTexture();
 
             var texture = new Bitmap(fileName);
@@ -60,10 +68,10 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
 
             return (textureId, true);
         }
-
+        
         public override void Render()
         {
-            GL.CallList(DisplayListId);
+            RenderingCollectionMode.Render(DisplayListId);
         }
 
         protected void Init(RenderableProperties properties)

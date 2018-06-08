@@ -1,6 +1,10 @@
 ﻿using MODEXngine.lib.Enums;
 using MODEXngine.lib.Renderer.Objects;
+using MODEXngine.renderlib.opengl.Collections;
+using MODEXngine.renderlib.opengl.Enums;
 using MODEXngine.renderlib.opengl.Renderables.Base;
+
+using NLog;
 
 using OpenTK.Graphics.OpenGL;
 
@@ -8,13 +12,15 @@ namespace MODEXngine.renderlib.opengl.Renderables
 {
     public class WallOpenGL : BaseOpenGLRenderable
     {
+        public WallOpenGL(IDisplayCollection renderingCollectionMode) : base(renderingCollectionMode) { }
+
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         public override RenderableTypes RenderableType => RenderableTypes.WALL;
-        
-        public override void Initialize(RenderableProperties renderableProperties)
+
+        private void GenerateDisplayList()
         {
-            Init(renderableProperties);
-            
-            DisplayListId = GL.GenLists(1);
+            DisplayListId = (int) RenderingCollectionMode.Generate();
 
             GL.NewList(DisplayListId, ListMode.Compile);
             GL.Enable(EnableCap.Texture2D);
@@ -36,6 +42,25 @@ namespace MODEXngine.renderlib.opengl.Renderables
 
             GL.Disable(EnableCap.Texture2D);
             GL.EndList();
+        }
+
+        public override void Initialize(RenderableProperties renderableProperties)
+        {
+            Init(renderableProperties);
+            
+            switch (RenderingCollectionMode.CollectionType)
+            {
+                case DisplayCollectionType.Display_List:
+                    GenerateDisplayList();
+                    break;
+                case DisplayCollectionType.Raw:
+                    break;
+                case DisplayCollectionType.Vertex_Buffer_Object:
+                    break;
+                default:
+                    Log.Error($"Rendering Collection not implemented for {RenderingCollectionMode.CollectionType}");
+                    break;
+            }
         }
     }
 }
