@@ -15,7 +15,7 @@ namespace MODEXngine.WPF.InterfaceImplementations
         {
             var dlg = new CommonOpenFileDialog
             {
-                Title = MODEXngine.lib.Common.Constants.NAME_APP,
+                Title = lib.Common.Constants.NAME_APP,
                 IsFolderPicker = true,
                 InitialDirectory = AppContext.BaseDirectory,
                 AddToMostRecentlyUsedList = false,

@@ -18,7 +18,7 @@ namespace MODEXngine.lib.wolfenstein3d
 
             renderer.AddRenderable(RenderableTypes.CEILING, new RenderableProperties(2048, 2048, 0, 128, 0, "ceiling.png", true));
 
-            renderer.AddRenderable(RenderableTypes.WALL, new RenderableProperties(128, 128, 0, 0, 0, "wall.png", false));
+            renderer.AddRenderable(RenderableTypes.WALL, new RenderableProperties(128, 128, 0, 0, 0, "wall.png"));
            
             renderer.Start();
 

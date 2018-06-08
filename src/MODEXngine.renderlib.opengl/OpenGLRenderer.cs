@@ -16,7 +16,7 @@ namespace MODEXngine.renderlib.opengl
 {
     public class OpenGLRenderer : BaseRenderer
     {
-        private OpenTK.GameWindow gWindow;
+        private GameWindow gWindow;
         KeyboardState keyboardState;
         private float xpos = 0.0f;
         private float zpos = 0.0f;
@@ -132,12 +132,12 @@ namespace MODEXngine.renderlib.opengl
             gWindow.Run(1.0 / 60.0);
         }
 
-        private void GWindow_Closed(object sender, System.EventArgs e)
+        private void GWindow_Closed(object sender, EventArgs e)
         {
             OnWindowClosed();
         }
 
-        public override List<Resolution> SupportedResolutions() => OpenTK.DisplayDevice.GetDisplay(0).AvailableResolutions.Select(a => new Resolution
+        public override List<Resolution> SupportedResolutions() => DisplayDevice.GetDisplay(0).AvailableResolutions.Select(a => new Resolution
         {
             Height = a.Height,
             Width = a.Width,
