@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MODEXngine.lib.wolfenstein3d
+﻿namespace MODEXngine.lib.wolfenstein3d.Objects
 {
     public class GameLevel
     {

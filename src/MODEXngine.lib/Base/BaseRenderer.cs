@@ -5,7 +5,6 @@ using System.Reflection;
 
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Enums;
-using MODEXngine.lib.Managers;
 using MODEXngine.lib.Renderer.Base;
 using MODEXngine.lib.Renderer.Objects;
 
@@ -16,7 +15,7 @@ namespace MODEXngine.lib.Base
         protected string GameTitle;
         protected Settings Settings;
 
-        public event EventHandler<(EventTypes, object)> EventOccurred;
+        public event EventHandler<(EventTypes eventType, object obj)> EventOccurred;
 
         protected void OnEventOccurred(EventTypes eventType, object payload = null)
         {
@@ -32,7 +31,7 @@ namespace MODEXngine.lib.Base
 
         public void SetGameLaunchItems(string gameTitle, Settings settings)
         {
-            this.GameTitle = gameTitle;
+            GameTitle = gameTitle;
             Settings = settings;
         }
 

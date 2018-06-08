@@ -25,9 +25,14 @@ namespace MODEXngine.lib.wolfenstein3d
             renderer.EventOccurred += Renderer_EventOccurred;
         }
 
-        private void Renderer_EventOccurred(object sender, (EventTypes, object) e)
+        private void Renderer_EventOccurred(object sender, (EventTypes eventType, object obj) e)
         {
-
+            switch (e.eventType)
+            {
+                case EventTypes.KEYBOARD_KEY_HIT:
+                    
+                    break;
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ namespace MODEXngine.renderlib.opengl
     {
         private OpenTK.GameWindow gWindow;
         KeyboardState keyboardState;
-        private float heading = 0.0f;
         private float xpos = 0.0f;
         private float zpos = 0.0f;
 
