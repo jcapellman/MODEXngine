@@ -9,15 +9,17 @@ namespace MODEXngine.renderlib.opengl.Renderables
 {
     public class FloorOpenGL : BaseOpenGLRenderable
     {
-        public FloorOpenGL(IDisplayCollection renderingDisplayCollection) : base(renderingDisplayCollection) { }
+        public FloorOpenGL(BaseOpenGLRenderingMode renderingMode) : base(renderingMode) { }
+
         public override RenderableTypes RenderableType => RenderableTypes.FLOOR;
 
         public override void Initialize(RenderableProperties renderableProperties)
         {
             Init(renderableProperties);
+        }
 
-            DisplayListId = GL.GenLists(1);
-
+        protected override void RenderRaw()
+        {
             GL.NewList(DisplayListId, ListMode.Compile);
             GL.Enable(EnableCap.Texture2D);
             GL.BindTexture(TextureTarget.Texture2D, TextureId);
@@ -37,7 +39,20 @@ namespace MODEXngine.renderlib.opengl.Renderables
             GL.End();
 
             GL.Disable(EnableCap.Texture2D);
+        }
+
+        protected override void InitializeDisplayList()
+        {
+            DisplayListId = (int) RenderingMode.Generate();
+
+            RenderRaw();
+
             GL.EndList();
+        }
+
+        protected override void InitializeVBO()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

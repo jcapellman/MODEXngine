@@ -5,6 +5,7 @@ using System.Reflection;
 
 using MODEXngine.lib.CommonObjects;
 using MODEXngine.lib.Enums;
+using MODEXngine.lib.Renderer;
 using MODEXngine.lib.Renderer.Base;
 using MODEXngine.lib.Renderer.Objects;
 
@@ -14,6 +15,7 @@ namespace MODEXngine.lib.Base
     {
         protected string GameTitle;
         protected Settings Settings;
+        protected IRenderingMode RenderingMode;
 
         public event EventHandler<(EventTypes eventType, object obj)> EventOccurred;
 
@@ -47,7 +49,7 @@ namespace MODEXngine.lib.Base
         {
             rendererImplementations = Assembly.GetAssembly(renderer).GetTypes()
                 .Where(a => !a.IsAbstract && a.BaseType == renderableType)
-                .Select(a => (BaseRenderable)Activator.CreateInstance(a)).ToList();
+                .Select(a => (BaseRenderable)Activator.CreateInstance(a, BindingFlags.CreateInstance, RenderingMode)).ToList();
         }
 
         protected List<BaseRenderable> rendererImplementations = new List<BaseRenderable>();

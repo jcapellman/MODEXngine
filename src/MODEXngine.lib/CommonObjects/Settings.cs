@@ -16,6 +16,8 @@ namespace MODEXngine.lib.CommonObjects
 
         public Dictionary<string, string> GameSettings { get; set; }
 
+        public string RenderingMode { get; set; }
+
         public Settings()
         {
             GameSettings = new Dictionary<string, string>();

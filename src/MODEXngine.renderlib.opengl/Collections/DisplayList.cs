@@ -4,13 +4,11 @@ using OpenTK.Graphics.OpenGL;
 
 namespace MODEXngine.renderlib.opengl.Collections
 {
-    public class DisplayList : IDisplayCollection
+    public class DisplayList : BaseOpenGLRenderingMode
     {
-        public DisplayCollectionType CollectionType => DisplayCollectionType.Display_List;
+        public override RenderingModeType RenderingModeType => RenderingModeType.Display_List;
 
-        public object Generate() => GL.GenLists(1);
-
-        public void Render(object argument = null)
+        public override void Render(object argument = null)
         {
             if (!(argument is int))
             {
@@ -19,5 +17,7 @@ namespace MODEXngine.renderlib.opengl.Collections
 
             GL.CallList((int)argument);
         }
+
+        public override object Generate() => GL.GenLists(1);
     }
 }

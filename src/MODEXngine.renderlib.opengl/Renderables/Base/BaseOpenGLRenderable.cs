@@ -5,7 +5,7 @@ using System.IO;
 using MODEXngine.lib.Renderer.Base;
 using MODEXngine.lib.Renderer.Objects;
 using MODEXngine.renderlib.opengl.Collections;
-
+using MODEXngine.renderlib.opengl.Enums;
 using NLog;
 
 using OpenTK.Graphics.OpenGL;
@@ -20,11 +20,11 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
         protected int TextureId;
         protected int DisplayListId;
 
-        protected IDisplayCollection RenderingCollectionMode;
+        protected BaseOpenGLRenderingMode RenderingMode;
 
-        protected BaseOpenGLRenderable(IDisplayCollection renderingCollectionMode)
+        protected BaseOpenGLRenderable(BaseOpenGLRenderingMode renderingMode)
         {
-            RenderingCollectionMode = renderingCollectionMode;
+            RenderingMode = renderingMode;
         }
 
         private static (int textureID, bool successfull) LoadTexture(string fileName, bool repeated = false)
@@ -68,10 +68,30 @@ namespace MODEXngine.renderlib.opengl.Renderables.Base
 
             return (textureId, true);
         }
-        
+
+        protected abstract void RenderRaw();
+
+        protected abstract void InitializeDisplayList();
+
+        protected abstract void InitializeVBO();
+
         public override void Render()
         {
-            RenderingCollectionMode.Render(DisplayListId);
+            switch (RenderingMode.RenderingModeType)
+            {
+                case RenderingModeType.Display_List:
+                    RenderingMode.Render(DisplayListId);
+                    break;
+                case RenderingModeType.Raw:
+                    RenderRaw();
+                    break;
+                case RenderingModeType.Vertex_Buffer_Object:
+                    RenderingMode.Render();
+                    break;
+                default:
+                    Log.Error($"Could not find implementation for {RenderingMode.RenderingModeType}");
+                    break;
+            }
         }
 
         protected void Init(RenderableProperties properties)

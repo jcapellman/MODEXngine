@@ -1,6 +1,6 @@
 ﻿namespace MODEXngine.renderlib.opengl.Enums
 {
-    public  enum DisplayCollectionType
+    public enum RenderingModeType
     {
         Raw,
         Display_List,

@@ -12,17 +12,14 @@ namespace MODEXngine.renderlib.opengl.Renderables
 {
     public class WallOpenGL : BaseOpenGLRenderable
     {
-        public WallOpenGL(IDisplayCollection renderingCollectionMode) : base(renderingCollectionMode) { }
+        public WallOpenGL(BaseOpenGLRenderingMode renderingMode) : base(renderingMode) { }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         public override RenderableTypes RenderableType => RenderableTypes.WALL;
 
-        private void GenerateDisplayList()
+        protected override void RenderRaw()
         {
-            DisplayListId = (int) RenderingCollectionMode.Generate();
-
-            GL.NewList(DisplayListId, ListMode.Compile);
             GL.Enable(EnableCap.Texture2D);
             GL.BindTexture(TextureTarget.Texture2D, TextureId);
 
@@ -41,26 +38,27 @@ namespace MODEXngine.renderlib.opengl.Renderables
             GL.End();
 
             GL.Disable(EnableCap.Texture2D);
+        }
+
+        protected override void InitializeDisplayList()
+        {
+            DisplayListId = (int) RenderingMode.Generate();
+
+            GL.NewList(DisplayListId, ListMode.Compile);
+           
+            RenderRaw();
+
             GL.EndList();
+        }
+
+        protected override void InitializeVBO()
+        {
+
         }
 
         public override void Initialize(RenderableProperties renderableProperties)
         {
             Init(renderableProperties);
-            
-            switch (RenderingCollectionMode.CollectionType)
-            {
-                case DisplayCollectionType.Display_List:
-                    GenerateDisplayList();
-                    break;
-                case DisplayCollectionType.Raw:
-                    break;
-                case DisplayCollectionType.Vertex_Buffer_Object:
-                    break;
-                default:
-                    Log.Error($"Rendering Collection not implemented for {RenderingCollectionMode.CollectionType}");
-                    break;
-            }
         }
     }
 }
